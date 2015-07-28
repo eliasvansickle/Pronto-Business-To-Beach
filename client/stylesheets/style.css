@@ -1,0 +1,240 @@
+/*////////////////////////////////////////////////////////////////////////////////////////LANDING PAGE///////////*/
+.main {
+	margin-top: 50px;
+	height: 900px;
+	width: 100%;
+	background: url('../images/beach.jpg') no-repeat center center fixed;
+	background-size: cover;
+	margin-bottom: 0px;
+}
+	.main h1 {
+		position: fixed;
+		margin-top: 17%;
+		color: white;
+	}
+	.main .more_info {
+		color: white;
+		margin-top: 55%;
+		font-size: 40px;
+		text-align: center;
+	}
+div.order {
+	color: white;
+	height: 900px;
+	width: 100%;
+	background: url('../images/order.jpg') no-repeat center center fixed;
+	background-size: cover;
+	margin-bottom: 0px;
+}
+div.relax {
+	color: white;
+	height: 900px;
+	width: 100%;
+	background: url('../images/girls.jpg') no-repeat center center fixed;
+	background-size: cover;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////SIGN IN OPTIONS PAGE///////////*/
+.main_sign_up_page {
+	margin-top: 50px;
+}
+	.main_sign_up_page .row {
+		margin-bottom: 20px;
+	}
+
+/*/////////////////////////////////////////////////////////////////////////////USER SIGN IN PAGE///////////*/
+
+.user_sign_up_form {
+	margin-top: 30px;
+}
+.user_sign_up_header {
+	margin-top: 80px;
+}
+.user_sign_up_form .row {
+	margin-bottom: 20px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////BUSINESS SIGN IN PAGE///////////*/
+
+
+.business_sign_up_form {
+	margin-top: 30px;
+}
+.business_sign_up_header {
+	margin-top: 80px;
+}
+.business_sign_up_form .row {
+	margin-bottom: 20px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////TASKFORCE SIGN IN PAGE///////////*/
+
+
+.taskforce_sign_up_form {
+	margin-top: 30px;
+}
+.taskforce_sign_up_header {
+	margin-top: 80px;
+}
+.taskforce_sign_up_form .row {
+	margin-bottom: 20px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////LOG IN PAGE///////////*/
+
+.login_form {
+	margin-top: 30px;
+}
+.login_header {
+	margin-top: 80px;
+}
+.login_form .row {
+	margin-bottom: 20px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////USER MAIN PAGE///////////*/
+.user_dashboard_business_images {
+	margin-top: 30px;
+}
+.jumbotron {
+	padding: 0px;
+}
+.filter_businesses {
+	margin-top: 80px;
+}
+.biz {
+	height: auto;	
+}
+.biz_bottom {
+	height: 100px;
+}
+.happy_bowls {
+	height: 500px;
+	width: 100%;
+	background: url('../images/happy_bowls.jpg') no-repeat center center fixed;
+	background-size: cover;
+}
+.jonis {
+	height: 500px;
+	width: 100%;
+	background: url('../images/jonis.jpg') no-repeat center center fixed;
+	background-size: cover;
+}
+.naturally_good {
+	height: 500px;
+	width: 100%;
+	background: url('../images/naturally_good.jpg') no-repeat center center fixed;
+	background-size: cover;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////MENU PAGE///////////*/
+
+.menu {
+	margin-top: 70px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////CHECKOUT PAGE///////////*/
+
+.cart {
+	margin-top: 70px;
+}
+/*/////////////////////////////////////////////////////////////////////////////SUCCESSFUL ORDER PAGE///////////*/
+.order_tracking_map {
+	margin-top: 70px;
+}
+.map_canvas {
+	height: 500px;
+	width: 100%;
+	background: url('../images/google_maps_temp.jpg') no-repeat center center fixed;
+	background-size: cover;
+}
+.map_canvas h3 {
+	margin-left: 80%;
+}
+.successful_order_options {
+	margin-top: 20px;
+	text-align: center;
+	padding-bottom: 50px;
+}
+
+
+/*/////////////////////////////////////////////////////////////////////////////BUSINESS CURRENT ORDERS PAGE///////////*/
+
+.orders_table {
+	margin-top: 70px;
+}
+
+
+/*/////////////////////////////////////////////////////////////////////////////ADMIN USERS PAGE///////////*/
+
+.admin_users_table {
+	margin-top: 70px;
+}
+
+.admin_business_table {
+	margin-top: 70px;
+}
+
+.admin_taskforce_table {
+	margin-top: 70px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////ADMIN UPDATE USER PROFILE PAGE///////////*/
+
+.user_profile_update_form {
+	margin-top: 30px;
+}
+.user_profile_update_header {
+	margin-top: 80px;
+}
+.user_profile_update_form .row {
+	margin-bottom: 20px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////ADMIN UPDATE BUSINESS PROFILE PAGE///////////*/
+.business_update_profile_form {
+	margin-top: 30px;
+}
+.business_update_profile_header {
+	margin-top: 80px;
+}
+.business_update_profile_form .row {
+	margin-bottom: 20px;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////ADMIN UPDATE TASKFORCE PROFILE PAGE///////////*/
+
+.taskforce_update_profile_form {
+	margin-top: 30px;
+}
+.taskforce_update_profile_header {
+	margin-top: 80px;
+}
+.taskforce_update_profile_form .row {
+	margin-bottom: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+<div class="admin_users_page">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<span class='navbar-brand'><a href="#/">PRONTO DELIVERY CO</a></span>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class='nav navbar-nav navbar-right'>
+					<li><a href='#/'>Log Out (INCORPORATE SESSION HERE)</a></li>
+					<li><a href="#/admin_business">Admin Business</a></li>
+					<li><a href="#/admin_taskforce">Admin Taskforce</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="admin_users_table container">
+		<div class="container">
+			<div class="row col-md-12">
+				<div class="col-md-2 col-md-offset-10">
+					<input class='form-control admin_filter_users' type="text" placeholder='Filter Users'>
+				</div>
+			</div>
+		</div>
+		<h1>Users</h1>
+		<table class='table'>
+			<thead>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Mobile</th>
+				<th>Created At</th>
+				<th></th>
+			</thead>
+			<tbody>
+				<tr ng-repeat='user in users'>
+					<td ng-bind='user.name'></td>
+					<td ng-bind='user.email'></td>
+					<td ng-bind='user.cell_phone'></td>
+					<td ng-bind='user.created_at'></td>
+					<td><p><a href="" ng-click='updateUserProfile(user._id)'>Update</a></p><p><a href="">Delete</a></p></td>
+				</tr>				
+			</tbody>
+		</table>
+	</div>
+</div>

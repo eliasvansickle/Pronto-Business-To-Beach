@@ -1,0 +1,73 @@
+<div class="business_sign_up_page col-md-12">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<span class='navbar-brand'><a href="#/">PRONTO DELIVERY CO</a></span>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class='nav navbar-nav navbar-right'>
+					<li><a href='/#login'>Log In</a></li>
+					<li><a href='/#signup'>Sign Up</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container business_sign_up_container">
+		<div class="row">
+			<h1 class='business_sign_up_header col-md-offset-4'>Business Sign Up</h1>
+		</div>
+		<form class='form-group business_sign_up_form col-md-5 col-md-offset-4'>
+			<div class="row">
+				<input ng-model='newBusiness.business_name' class='form-control' type="text" placeholder='Business Name'>
+				<div class="errors" ng-bind='biz_reg_errors.business_name.message'></div>
+			</div>
+			<div class="row">
+				<input ng-model='newBusiness.email' class='form-control' type="email" placeholder='Email'>
+				<div class="errors" ng-bind='biz_reg_errors.email.message'></div>
+			</div>
+			<div class="row">
+				<input ng-model='newBusiness.phone' class='form-control' type="tel" placeholder='Phone Number'>
+				<div class="errors" ng-bind='biz_reg_errors.phone.message'></div>
+			</div>
+			<div class="row">
+				<input ng-model='newBusiness.password' class='form-control' type="password" placeholder='Password'>
+				<div class="errors" ng-bind='biz_reg_errors.password.message'></div>
+			</div>
+			<div class="row">
+				<input ng-model='newBusiness.pass_conf' class='form-control' type="password" placeholder='Password Confirmation'>
+			</div>
+			<div class="row">
+				Street Address:
+				<input ng-model='newBusiness.street_address' class='form-control' type="text" placeholder='10 Main St'>
+				<div class="errors" ng-bind='biz_reg_errors.street_address.message'></div>
+			</div>
+			<div class="row">
+				City:
+				<input ng-model='newBusiness.city' class='form-control' type="text" placeholder='Amagansett'>
+				<div class="errors" ng-bind='biz_reg_errors.city.message'></div>
+			</div>
+			<div class="row">
+				State:
+				<select ng-model='newBusiness.state' class='form-control' name="state">
+					<option value=""></option>
+					<option value="NY">New York</option>
+				</select>
+				<div class="errors" ng-bind='biz_reg_errors.state.message'></div>
+			</div>
+			<div class="row">
+				Zip Code:
+				<input ng-model='newBusiness.zip_code' class='form-control' type="text" placeholder='55555'>
+				<div class="errors" ng-bind='biz_reg_errors.zip_code.message'></div>
+			</div>
+			<div class="row">
+				<input ng-click='createBusiness(newBusiness)' class='form-control' type="submit" value='Register'>
+			</div>
+			<div class="row">
+				<div class="success" ng-bind='biz_reg_success'></div>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+
