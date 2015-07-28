@@ -25,4 +25,39 @@ module.exports = function(app) {
 	app.get('/taskforceMembers', function(req, res) {
 		taskforceController.showAllTaskforceMembers(req, res);
 	})
+	app.get('/userProfile/:id', function(req, res) {
+		userController.showIndividualUser(req, res);
+	})
+	app.get('/businessProfile/:id', function(req, res) {
+		businessController.showIndividualBusiness(req, res);
+	})
+	app.get('/taskforceProfile/:id', function(req, res) {
+		taskforceController.showIndividualTaskforce(req, res);
+	})
+	app.post('/taskforceProfile/update', function(req, res) {
+		taskforceController.updateIndividualTaskforce(req, res);
+	})
+	app.post('/businessProfile/update', function(req, res) {
+		businessController.updateIndividualBusiness(req, res);
+	})
+	app.post('/userProfile/update', function(req, res) {
+		userController.updateIndividualUser(req, res);
+	})
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

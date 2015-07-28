@@ -17,7 +17,7 @@
 		<div class="container">
 			<div class="row col-md-12">
 				<div class="col-md-2 col-md-offset-10">
-					<input class='form-control admin_filter_users' type="text" placeholder='Filter Users'>
+					<input ng-model='filter_name' class='form-control admin_filter_users' type="text" placeholder='Filter Users'>
 				</div>
 			</div>
 		</div>
@@ -31,12 +31,12 @@
 				<th></th>
 			</thead>
 			<tbody>
-				<tr ng-repeat='user in users'>
+				<tr ng-repeat='user in users | filter: filter_name | orderBy: "-created_at"'>
 					<td ng-bind='user.name'></td>
 					<td ng-bind='user.email'></td>
 					<td ng-bind='user.cell_phone'></td>
 					<td ng-bind='user.created_at'></td>
-					<td><p><a href="" ng-click='updateUserProfile(user._id)'>Update</a></p><p><a href="">Delete</a></p></td>
+					<td><p><a href="" ng-click='showUserProfile(user._id)'>Update</a></p><p><a href="">Delete</a></p></td>
 				</tr>				
 			</tbody>
 		</table>

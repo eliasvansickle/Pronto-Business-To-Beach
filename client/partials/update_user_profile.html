@@ -20,26 +20,16 @@
 		</div>
 		<form class='form-group user_profile_update_form col-md-5 col-md-offset-4'>
 			<div class="row">
-				<div class="errors" ng-model='user_reg_errors.name.message'></div>
-				<input ng-model='newUser.name' class='form-control' type="text" placeholder='Name'>
+				<input ng-value='user.name' ng-model='user.name' class='form-control' type="text" placeholder='Name'>
 			</div>
 			<div class="row">
-				<div class="errors" ng-bind='user_reg_errors.email.message'></div>
-				<input ng-model='newUser.email' class='form-control' type="email" placeholder='Email'>
+				<input ng-value='user.email' ng-model='user.email' class='form-control' type="email" placeholder='Email'>
 			</div>
 			<div class="row">
-				<div class="errors" ng-bind='user_reg_errors.cell_phone.message'></div>
-				<input ng-model='newUser.cell_phone' class='form-control' type="tel" placeholder='Cell Phone Number'>
+				<input ng-value='user.cell_phone' ng-model='user.cell_phone' class='form-control' type="tel" placeholder='Cell Phone Number'>
 			</div>
 			<div class="row">
-				<div class="errors" ng-bind='user_reg_errors.password.message'></div>
-				<input ng-model='newUser.password' class='form-control' type="password" placeholder='Password'>
-			</div>
-			<div class="row">
-				<input ng-model='newUser.passconf' class='form-control' type="password" placeholder='Password Confirmation'>
-			</div>
-			<div class="row">
-				<input ng-click='createUser(newUser)' class='form-control' type="submit" value='Register'>
+				<input ng-click='updateUser(user)' class='form-control' type="submit" value='Update'>
 			</div>
 		</form>
 	</div>

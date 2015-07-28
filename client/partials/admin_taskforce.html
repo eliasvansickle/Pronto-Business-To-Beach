@@ -17,7 +17,7 @@
 		<div class="container">
 			<div class="row col-md-12">
 				<div class="col-md-3 col-md-offset-9">
-					<input class='form-control admin_filter_taskforce' type="text" placeholder='Filter Taskforce Members'>
+					<input ng-model='filter_name' class='form-control admin_filter_taskforce' type="text" placeholder='Filter Taskforce Members'>
 				</div>
 			</div>
 		</div>
@@ -32,13 +32,13 @@
 				<th></th>
 			</thead>
 			<tbody>
-				<tr ng-repeat='taskforce in taskforce_members'>
+				<tr ng-repeat='taskforce in taskforce_members | filter: filter_name | orderBy: "-created_at"'>
 					<td ng-bind='taskforce.first_name'></td>
 					<td ng-bind='taskforce.last_name'></td>
 					<td><a href="" ng-bind='taskforce.email'></a></td>
 					<td ng-bind='taskforce.cell_phone'></td>
 					<td ng-bind='taskforce.status'></td>
-					<td><p><a href="" ng-click='updateTaskforceProfile(taskforce._id)'>Update</a></p><p><a href="">Delete</a></p></td>
+					<td><p><a href="" ng-click='showTaskforceProfile(taskforce._id)'>Update</a></p><p><a href="">Delete</a></p></td>
 				</tr>
 			</tbody>
 		</table>

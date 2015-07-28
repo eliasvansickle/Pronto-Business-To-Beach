@@ -57,13 +57,16 @@ application.config(function($routeProvider) {
 		controller: 'adminTaskforceController'
 	})
 	.when('/update_user_profile', {
-		templateUrl: './partials/update_user_profile.html'
+		templateUrl: './partials/update_user_profile.html',
+		controller: 'adminUpdateUserController'
 	})
 	.when('/update_business_profile', {
-		templateUrl: './partials/update_business_profile.html'
+		templateUrl: './partials/update_business_profile.html',
+		controller: 'adminUpdateBusinessController'
 	})
 	.when('/update_taskforce_profile', {
-		templateUrl: './partials/update_taskforce_profile.html'
+		templateUrl: './partials/update_taskforce_profile.html',
+		controller: 'adminUpdateTaskforceController'
 	})
 
 	//////////////////////////////////////////////////////////////TEMPORARY ABOVE///////////////////////////

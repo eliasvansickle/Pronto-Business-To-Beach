@@ -36,6 +36,37 @@ businessController = {
 				res.json(businesses);
 			}
 		})
+	},
+	showIndividualBusiness: function(req, res) {
+		Business.findOne({_id: req.params.id}, function(err, business) {
+			if(err) {
+				console.log("ERROR", err);
+			}
+			else {
+				res.json(business);
+			}
+		})
+	},
+	updateIndividualBusiness: function(req, res) {
+		Business.update({_id: req.body._id}, {
+			business_name: req.body.business_name,
+			email: req.body.email,
+			phone: req.body.phone,
+			street_address: req.body.street_address,
+			city: req.body.city,
+			state: req.body.state,
+			zip_code: req.body.zip_code,
+			status: req.body.status,
+			updated_at: Date()
+		}, 
+		function(err, business) {
+			if(err) {
+				console.log("ERROR", err);
+			}
+			else {
+				res.json({success: 'Update Sucessful'});
+			}
+		})
 	}
 }
 

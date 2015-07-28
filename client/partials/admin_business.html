@@ -17,7 +17,7 @@
 		<div class="container">
 			<div class="row col-md-12">
 				<div class="col-md-2 col-md-offset-10">
-					<input class='form-control admin_filter_businesses' type="text" placeholder='Filter Businesses'>
+					<input ng-model='filter_name' class='form-control admin_filter_businesses' type="text" placeholder='Filter Businesses'>
 				</div>
 			</div>
 		</div>
@@ -35,7 +35,7 @@
 				<th></th>
 			</thead>
 			<tbody>
-				<tr ng-repeat='business in businesses'>
+				<tr ng-repeat='business in businesses | filter: filter_name | orderBy: "-created_at"'>
 					<td ng-bind='business.business_name'></td>
 					<td><a href="" ng-bind='business.email'></a></td>
 					<td ng-bind='business.phone'></td>
@@ -44,7 +44,7 @@
 					<td ng-bind='business.state'></td>
 					<tdng-bind='business.zip_code'></td>
 					<td ng-bind='business.status'></td>
-					<td><p><a href="" ng-click='updateBusinessProfile(business._id)'>Update</a></p><p><a href="">Delete</a></p></td>
+					<td><p><a href="" ng-click='showBusinessProfile(business._id)'>Update</a></p><p><a href="">Delete</a></p></td>
 				</tr>
 			</tbody>
 		</table>

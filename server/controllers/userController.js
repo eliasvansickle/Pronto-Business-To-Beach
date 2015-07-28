@@ -28,8 +28,34 @@ userController = {
 				console.log("ERROR", err);
 			}
 			else {
-				console.log(users);
 				res.json(users);
+			}
+		})
+	},
+	showIndividualUser: function(req, res) {
+		User.findOne({_id: req.params.id}, function(err, user) {
+			if(err) {
+				console.log("ERROR", err);
+			}
+			else {
+				res.json(user);
+			}
+		})
+	},
+	updateIndividualUser: function(req, res) {
+		console.log(req.body, 'server');
+		User.update({_id: req.body._id}, {
+			name: req.body.name,
+			email: req.body.email,
+			cell_phone: req.body.cell_phone,
+			updated_at: Date()
+		}, 
+		function(err, user) {
+			if(err) {
+				console.log("ERROR", err);
+			}
+			else {
+				res.json({success: 'Update Sucessful'});
 			}
 		})
 	}
