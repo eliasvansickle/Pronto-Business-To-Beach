@@ -12,6 +12,10 @@ sessionController = {
 			else {
 				if(user != null) {
 					console.log(user);
+					req.session._id = user._id;
+					req.session.email = user.email;
+					req.session.name = user.name;
+					req.session.type = user.type;
 					res.json(user);
 				}
 				else {
@@ -23,6 +27,7 @@ sessionController = {
 						else {
 							if(business != null) {
 								console.log(business);
+								
 								res.json(business);
 							}
 							else {
@@ -50,6 +55,15 @@ sessionController = {
 				}
 			}
 		})
+	},
+	checkSession: function(req, res) {
+		if(req.session.type) {
+			console.log(req.session, 'session!!!');
+		}
+		else {
+			console.log('no session');
+		}
+		res.end('done');
 	}
 }
 

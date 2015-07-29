@@ -29,9 +29,40 @@ application.controller('authenticationController', function($scope, $location, a
 	} 
 	$scope.login = function(client) {
 		authenticationFactory.login(client, function(data) {
-			console.log(data);
+			if(data.type == 'admin') {
+				$location.path('/admin_users');
+			}
+			else if(data.type == 'user') {
+				$location.path('/user_dashboard');
+			}
+			else if(data.type == 'business') {
+				$location.path('/business_current_orders');
+			}
+			else {
+				$location.path('/taskforce_recieve_orders');
+			}
 			$scope.login_fail = data.login_fail;
 		})
 		$scope.client = {};
 	}
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
