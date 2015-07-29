@@ -5,51 +5,63 @@ var User = mongoose.model('User');
 
 sessionController = {
 	login: function(req, res) {
+		var fail = 0;
+		var client = {};
+
 		User.findOne(req.body, function(err, user) {
 			if(err) {
 				console.log("Error", err);
 			}
 			else {
 				if(user != null) {
-					console.log(user);
+					client = user;
+					setSession(client);
 					res.json(user);
 				}
-				else {
-					console.log('user not found');
-					Business.findOne({email: req.body.email, password: req.body.password, status: 'active'}, function(err, business) {
-						if(err) {
-							console.log("Error", err);
-						}
-						else {
-							if(business != null) {
-								console.log(business);
-								res.json(business);
-							}
-							else {
-								console.log('business not found');
-								Taskforce.findOne({email: req.body.email, password: req.body.password, status: 'active'}, function(err, taskforce) {
-									if(err) {
-										console.log("Error", err);
-									}
-									else {
-										if(taskforce != null) {
-											console.log(taskforce);
-											res.json(taskforce);
-										}
-										else {
-											console.log('taskforce member not found');
-											res.json({login_fail: 'Invalid Log In Credentials'});
+				fail++;
+			}
+		})
 
-										}
-									}
+		Business.findOne({email: req.body.email, password: req.body.password, status: 'active'}, function(err, business) {
+			if(err) {
+				console.log("Error", err);
+			}
+			else {
+				if (business != null) {
+					client = business;
+					setSession(client);
+					res.json(business);
+				}
+				fail++;
+			}
+		})
 
-								})
-							}
-						}
-					})
+		Taskforce.findOne({email: req.body.email, password: req.body.password, status: 'active'}, function(err, taskforce) {
+			if(err) {
+				console.log("Error", err);
+			}
+			else {
+				if(taskforce != null) {
+					client = taskforce;
+					setSession(client);
+					res.json(taskforce);
+				}
+				fail++;
+				
+				if (fail == 3) {
+					res.json({login_fail: 'Invalid Log In Credentials'});
 				}
 			}
 		})
+
+		function setSession(client) {
+			req.session._id = client._id;
+			req.session.email = client.email;
+			req.session.name = client.name;
+			req.session.type = client.type;
+			console.log("SESSION SET HERE", req.session);
+		}
+
 	}
 }
 
