@@ -33,10 +33,10 @@
 			<tbody>
 				<tr ng-repeat='user in users | filter: filter_name | orderBy: "-created_at"'>
 					<td ng-bind='user.name'></td>
-					<td ng-bind='user.email'></td>
+					<td><a href="" ng-bind='user.email'></a></td>
 					<td ng-bind='user.cell_phone'></td>
 					<td ng-bind='user.created_at'></td>
-					<td><p><a href="" ng-click='showUserProfile(user._id)'>Update</a></p><p><a href="">Delete</a></p></td>
+					<td><p><a href="" ng-click='showUserProfile(user._id)'>Update</a></p><p><a href="" ng-click='deleteUser(user._id)'>Delete</a></p></td>
 				</tr>				
 			</tbody>
 		</table>

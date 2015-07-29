@@ -58,6 +58,18 @@ userController = {
 				res.json({success: 'Update Sucessful'});
 			}
 		})
+	},
+	deleteUser: function(req, res) {
+		console.log(req.params.id, 'server');
+		User.remove({_id: req.params.id}, function(err) {
+			if(err) {
+				console.log("Error", err);
+			}
+			else {
+				console.log('user successfully deleted.');
+				res.json({message: 'deleted!'});
+			}
+		})
 	}
 
 }

@@ -60,6 +60,40 @@ taskforceController = {
 				res.json({success: 'Update Sucessful'});
 			}
 		})
+	},
+	deleteTaskforce: function(req, res) {
+		Taskforce.remove({_id: req.params.id}, function(err) {
+			if(err) {
+				console.log('ERROR', err);
+			}
+			else {
+				console.log('successfully deleted taskforce');
+				res.json({message: 'deleted taskforce'});
+			}
+		})
 	}
 }
 module.exports = taskforceController;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

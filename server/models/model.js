@@ -1,21 +1,21 @@
 var mongoose = require('mongoose');
 var validate = require('mongoose-validator');
 
-var nameValidator = [
-	validate({
-		validator: 'isAlpha',
-		message: 'Name may only contiain alphabetic characters'
-	})
-];
-var businessNameValidator = [
-	validate({
-		validator: 'isAlpha',
-		message: 'Business Name may only contiain alphabetic characters'
-	})
-];
+// var nameValidator = [
+// 	validate({
+// 		validator: 'isAlpha',
+// 		message: 'Name may only contiain alphabetic characters'
+// 	})
+// ];
+// var businessNameValidator = [
+// 	validate({
+// 		validator: 'isAlpha',
+// 		message: 'Business Name may only contiain alphabetic characters'
+// 	})
+// ];
 
 var userSchema = new mongoose.Schema({
-	name: {type: String, validate: nameValidator}, 
+	name: String, 
 	email: {type: String},
 	cell_phone: {type: Number},
 	password: String,
@@ -25,7 +25,7 @@ var userSchema = new mongoose.Schema({
 })
 
 var businessSchema = new mongoose.Schema({
-	business_name: {type: String, validate: businessNameValidator},
+	business_name: String,
 	email: String,
 	phone: Number,
 	password: String,
@@ -39,7 +39,7 @@ var businessSchema = new mongoose.Schema({
 })
 
 var taskforceSchema = new mongoose.Schema({
-	first_name: {type: String, validate: nameValidator},
+	first_name: String,
 	last_name: String,
 	email: String,
 	cell_phone: Number,

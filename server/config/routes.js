@@ -43,6 +43,15 @@ module.exports = function(app) {
 	app.post('/userProfile/update', function(req, res) {
 		userController.updateIndividualUser(req, res);
 	})
+	app.post('/users/delete/:id', function(req, res) {
+		userController.deleteUser(req, res);
+	})
+	app.post('/business/delete/:id', function(req, res) {
+		businessController.deleteBusiness(req, res);
+	})
+	app.post('/taskforce/delete/:id', function(req, res) {
+		taskforceController.deleteTaskforce(req, res);
+	})
 }
 
 

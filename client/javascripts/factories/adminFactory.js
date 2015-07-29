@@ -53,7 +53,53 @@ application.factory('adminFactory', function($http) {
 			callback();
 		})
 	}
+	factory.deleteUser = function(user_id, callback) {
+		$http.post('/users/delete/'+user_id).success(function() {
+			callback();
+		})
+	}
+	factory.deleteBusiness = function(business_id, callback) {
+		$http.post('/business/delete/'+business_id).success(function() {
+			callback();
+		})
+	}
+	factory.deleteTaskforce = function(taskforce_id, callback) {
+		$http.post('/taskforce/delete/'+taskforce_id).success(function() {
+			callback();
+		})
+	}
 
 
 	return factory;
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

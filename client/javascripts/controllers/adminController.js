@@ -7,6 +7,13 @@ application.controller('adminUsersController', function($scope, $location, admin
 			$location.path('/update_user_profile');
 		});
 	}
+	$scope.deleteUser = function(user_id) {
+		adminFactory.deleteUser(user_id, function() {
+			adminFactory.showUsers(function(data) {
+				$scope.users = data;
+			})
+		})
+	}
 })
 application.controller('adminUpdateUserController', function($scope, $location, adminFactory) {
 	$scope.user = adminFactory.user_to_be_updated;
@@ -26,6 +33,13 @@ application.controller('adminBusinessController', function($scope, $location, ad
 	$scope.showBusinessProfile = function(business_id) {
 		adminFactory.showBusinessProfile(business_id, function() {
 			$location.path('/update_business_profile');
+		})
+	}
+	$scope.deleteBusiness = function(business_id) {
+		adminFactory.deleteBusiness(business_id, function() {
+			adminFactory.showBusinesses(function(data) {
+				$scope.businesses = data;
+			})
 		})
 	}
 })
@@ -48,6 +62,13 @@ application.controller('adminTaskforceController', function($scope, $location, a
 	$scope.showTaskforceProfile = function(taskforce_id) {
 		adminFactory.showTaskforceProfile(taskforce_id, function() {
 			$location.path('/update_taskforce_profile');
+		})
+	}
+	$scope.deleteTaskforce = function(taskforce_id) {
+		adminFactory.deleteTaskforce(taskforce_id, function() {
+			adminFactory.showTaskforceMembers(function(data) {
+				$scope.taskforce_members = data;
+			})
 		})
 	}
 })

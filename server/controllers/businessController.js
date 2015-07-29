@@ -67,7 +67,50 @@ businessController = {
 				res.json({success: 'Update Sucessful'});
 			}
 		})
+	},
+	deleteBusiness: function(req, res) {
+		Business.remove({_id: req.params.id}, function(err) {
+			if(err) {
+				console.log('ERROR', err);
+			}
+			else {
+				console.log('successfully deleted business');
+				res.json({message: 'deleted business'});
+			}
+		})
 	}
 }
 
 module.exports = businessController;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
