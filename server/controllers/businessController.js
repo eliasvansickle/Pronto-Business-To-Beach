@@ -4,6 +4,7 @@ var Business = mongoose.model('Business');
 businessController = {
 	createBusiness: function(req, res) {
 		var business = new Business({
+			type: 'business',
 			business_name: req.body.business_name,
 			email: req.body.email,
 			phone: req.body.phone,

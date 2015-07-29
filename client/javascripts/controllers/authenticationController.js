@@ -29,7 +29,9 @@ application.controller('authenticationController', function($scope, $location, a
 	} 
 	$scope.login = function(client) {
 		authenticationFactory.login(client, function(data) {
+			console.log(data);
 			$scope.login_fail = data.login_fail;
 		})
+		$scope.client = {};
 	}
 })

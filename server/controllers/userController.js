@@ -4,6 +4,7 @@ var User = mongoose.model('User');
 userController = {
 	createUser: function(req, res) {
 		user = new User({
+			type: 'user',
 			name: req.body.name,
 			email: req.body.email,
 			cell_phone: req.body.cell_phone,
@@ -45,6 +46,7 @@ userController = {
 	updateIndividualUser: function(req, res) {
 		console.log(req.body, 'server');
 		User.update({_id: req.body._id}, {
+			type: req.body.type,
 			name: req.body.name,
 			email: req.body.email,
 			cell_phone: req.body.cell_phone,

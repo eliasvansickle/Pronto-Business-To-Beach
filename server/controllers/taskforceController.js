@@ -4,6 +4,7 @@ var Taskforce = mongoose.model('Taskforce');
 taskforceController = {
 	createTaskforce: function(req, res) {
 		var taskforce = new Taskforce({
+			type: 'taskforce',
 			first_name: req.body.first_name,
 			last_name: req.body.last_name,
 			email: req.body.email,

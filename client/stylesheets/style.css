@@ -215,16 +215,24 @@ div.relax {
 }
 
 
+/*/////////////////////////////////////////////////////////////////////////////BUSINESS ADD MENU ITEM PAGE///////////*/
 
 
+.business_add_menu_item_form {
+	margin-top: 30px;
+}
+.business_add_menu_item_header {
+	margin-top: 80px;
+}
+.business_add_menu_item_form .row {
+	margin-bottom: 20px;
+}
 
+/*/////////////////////////////////////////////////////////////////////////////BUSINESS MENU PAGE///////////*/
 
-
-
-
-
-
-
+.business_menu_table {
+	margin-top: 70px;
+}
 
 
 

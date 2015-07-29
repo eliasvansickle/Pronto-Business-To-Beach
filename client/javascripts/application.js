@@ -68,9 +68,43 @@ application.config(function($routeProvider) {
 		templateUrl: './partials/update_taskforce_profile.html',
 		controller: 'adminUpdateTaskforceController'
 	})
+	.when('/business_menu_table', {
+		templateUrl: './partials/business_menu_table.html'
+	})
+
 
 	//////////////////////////////////////////////////////////////TEMPORARY ABOVE///////////////////////////
 	.otherwise({
 		redirectTo: '/'
 	})
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

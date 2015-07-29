@@ -1,0 +1,58 @@
+<div class="business_menu_table">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<span class='navbar-brand'><a href="#/">PRONTO DELIVERY CO</a></span>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class='nav navbar-nav navbar-right'>
+					<li><a href='#/'>Log Off</a></li>
+					<li><a href="#/business_order_history">Business Order History</a></li>
+					<li><a href="#/business_current_orders">Business Current Orders</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 col-md-offset-9">
+				<input ng-model='filter_name' class='form-control business_menu_filter' type="text" placeholder='Filter Menu Items'>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3 business_add_menu_item">
+				<div class="row">
+					<h1 class='business_add_menu_item_header'>Add Menu Item</h1>
+				</div>
+				<form class='form-group business_add_menu_item_form col-md-12'>
+					<div class="row">
+						<input class='form-control' type="text" placeholder='Menu Item'>
+					</div>
+					<div class="row">
+						<input class='form-control' type="number" placeholder='Price'>
+					</div>
+					<div class="row">
+						<input class='form-control' type="submit" value='Add Item'>
+					</div>
+				</form>
+			</div>
+			<div class="business_menu_table col-md-7 col-md-offset-2">	
+				<h1 class='business_menu_header'>Menu</h1>
+				<table class='table'>
+					<thead>
+						<th>Item</th>
+						<th>Price</th>
+						<th></th>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Burger</td>
+							<td>$12</td>
+							<td><p><a href="">Update</a></p><p><a href="">Delete</a></p></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

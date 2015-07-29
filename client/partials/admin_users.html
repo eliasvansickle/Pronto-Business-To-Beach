@@ -27,6 +27,7 @@
 				<th>Name</th>
 				<th>Email</th>
 				<th>Mobile</th>
+				<th>Type</th>
 				<th>Created At</th>
 				<th></th>
 			</thead>
@@ -35,6 +36,7 @@
 					<td ng-bind='user.name'></td>
 					<td><a href="" ng-bind='user.email'></a></td>
 					<td ng-bind='user.cell_phone'></td>
+					<td ng-bind='user.type'></td>
 					<td ng-bind='user.created_at'></td>
 					<td><p><a href="" ng-click='showUserProfile(user._id)'>Update</a></p><p><a href="" ng-click='deleteUser(user._id)'>Delete</a></p></td>
 				</tr>				

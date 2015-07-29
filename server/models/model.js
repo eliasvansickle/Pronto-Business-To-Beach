@@ -1,20 +1,8 @@
 var mongoose = require('mongoose');
-var validate = require('mongoose-validator');
-
-// var nameValidator = [
-// 	validate({
-// 		validator: 'isAlpha',
-// 		message: 'Name may only contiain alphabetic characters'
-// 	})
-// ];
-// var businessNameValidator = [
-// 	validate({
-// 		validator: 'isAlpha',
-// 		message: 'Business Name may only contiain alphabetic characters'
-// 	})
-// ];
+var Schema = mongoose.Schema;
 
 var userSchema = new mongoose.Schema({
+	type: String,
 	name: String, 
 	email: {type: String},
 	cell_phone: {type: Number},
@@ -25,6 +13,7 @@ var userSchema = new mongoose.Schema({
 })
 
 var businessSchema = new mongoose.Schema({
+	type: String,
 	business_name: String,
 	email: String,
 	phone: Number,
@@ -34,11 +23,21 @@ var businessSchema = new mongoose.Schema({
 	state: String,
 	zip_code: Number,
 	status: String,
+	menu: [{type: Schema.Types.ObjectId, ref: 'Menu'}],
+	created_at: {type: Date, default: new Date},
+	updated_at: {type: Date, default: new Date}
+})
+
+var menuSchema = new mongoose.Schema({
+	menu_item: {type: String, required: true},
+	price: {type: Number, required: true},
+	_business: {type: Schema.ObjectId, req: 'Business'},
 	created_at: {type: Date, default: new Date},
 	updated_at: {type: Date, default: new Date}
 })
 
 var taskforceSchema = new mongoose.Schema({
+	type: String,
 	first_name: String,
 	last_name: String,
 	email: String,
@@ -64,6 +63,8 @@ businessSchema.path('street_address').required(true, 'Street Address is required
 businessSchema.path('city').required(true, 'City is required');
 businessSchema.path('state').required(true, 'State is required');
 businessSchema.path('zip_code').required(true, 'Zip Code is required');
+
+mongoose.model('Menu', menuSchema);
 
 mongoose.model('Taskforce', taskforceSchema);
 taskforceSchema.path('first_name').required(true, 'First Name is required');
