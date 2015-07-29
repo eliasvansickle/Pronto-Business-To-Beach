@@ -52,6 +52,9 @@ module.exports = function(app) {
 	app.post('/taskforce/delete/:id', function(req, res) {
 		taskforceController.deleteTaskforce(req, res);
 	})
+	app.get('/session/check', function(req, res) {
+		sessionController.checkSession(req, res);
+	})
 }
 
 

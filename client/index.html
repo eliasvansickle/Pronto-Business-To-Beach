@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app='application'>
 <head>
 	<meta charset="UTF-8">
 	<title>Pronto Delivery</title>
@@ -20,10 +20,11 @@
 
 <script src='/javascripts/controllers/authenticationController.js'></script>
 <script src='/javascripts/controllers/adminController.js'></script>
+<script src='/javascripts/controllers/mainController.js'></script>
 
 <script src='./javascripts/jquery.js'></script>
 </head>
-<body ng-app='application'>
+<body ng-controller='mainController as main'>
 	<div ng-view=''></div>
 </body>
 </html>

@@ -71,6 +71,9 @@ application.config(function($routeProvider) {
 	.when('/business_menu_table', {
 		templateUrl: './partials/business_menu_table.html'
 	})
+	.when('/taskforce_recieve_orders', {
+		templateUrl: './partials/taskforce_recieve_orders.html'
+	})
 
 
 	//////////////////////////////////////////////////////////////TEMPORARY ABOVE///////////////////////////

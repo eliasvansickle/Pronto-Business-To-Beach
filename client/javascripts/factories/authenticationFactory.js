@@ -23,6 +23,11 @@ application.factory('authenticationFactory', function($http) {
 			callback(data);
 		})
 	}
+	factory.checkSession = function(callback) {
+		$http.get('/session/check').success(function(data) {
+			callback(data);
+		})
+	}
 
 	return factory;
 })

@@ -62,6 +62,16 @@ sessionController = {
 			console.log("SESSION SET HERE", req.session);
 		}
 
+	},
+
+	checkSession: function(req, res) {
+		if(req.session.type) {
+			console.log(req.session, 'session!!!');
+		}
+		else {
+			console.log('no session');
+		}
+		res.end('done');
 	}
 }
 
