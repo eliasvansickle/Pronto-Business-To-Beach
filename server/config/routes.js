@@ -55,6 +55,9 @@ module.exports = function(app) {
 	app.get('/session/check', function(req, res) {
 		sessionController.checkSession(req, res);
 	})
+	app.get('/session/logOut', function(req, res) {
+		sessionController.logOut(req, res);
+	})
 }
 
 

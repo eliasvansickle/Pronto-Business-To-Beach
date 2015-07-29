@@ -28,6 +28,11 @@ application.factory('authenticationFactory', function($http) {
 			callback(data);
 		})
 	}
+	factory.logOut = function(callback) {
+		$http.get('/session/logOut').success(function() {
+			callback();
+		})
+	}
 
 	return factory;
 })

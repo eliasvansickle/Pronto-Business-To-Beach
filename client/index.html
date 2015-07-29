@@ -9,24 +9,77 @@
 	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src='/javascripts/application.js'></script>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" href="./stylesheets/style.css">
+	<link rel="stylesheet" href="./stylesheets/style.css">
 
-<script src='/javascripts/factories/authenticationFactory.js'></script>
-<script src='/javascripts/factories/adminFactory.js'></script>
+	<script src='/javascripts/factories/authenticationFactory.js'></script>
+	<script src='/javascripts/factories/adminFactory.js'></script>
 
-<script src='/javascripts/controllers/authenticationController.js'></script>
-<script src='/javascripts/controllers/adminController.js'></script>
-<script src='/javascripts/controllers/mainController.js'></script>
+	<script src='/javascripts/controllers/authenticationController.js'></script>
+	<script src='/javascripts/controllers/adminController.js'></script>
+	<script src='/javascripts/controllers/mainController.js'></script>
 
-<script src='./javascripts/jquery.js'></script>
+	<script src='./javascripts/jquery.js'></script>
 </head>
+
 <body ng-controller='mainController as main'>
-	<div ng-view=''></div>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<span class='navbar-brand'>PRONTO DELIVERY CO</span>
+			</div>
+
+			<!-- >>>>>>>>> LANDING PAGE/BEFORE LOG IN >>>>>>>>> -->
+			<div class="navbar-collapse collapse" ng-if="!main.loggedIn">
+				<ul class='nav navbar-nav navbar-right'>
+					<li><a href='#/login'>Log In</a></li>
+					<li><a href='#/signup'>Sign Up</a></li>
+					<li><a href='#/user_dashboard'>Temp User Dashboard</a></li>
+					<li><a href="#/business_current_orders">Business Current Orders</a></li>
+					<li><a href="#/admin_users">Admin Users</a></li>
+				</ul>
+			</div>
+			<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+			<!-- >>>>>>>>>>>>>>>>>> USER >>>>>>>>>>>>>>>>>> -->
+			<div class="navbar-collapse collapse" ng-if="main.loggedIn && main.user">
+				<!-- >>>>>>>>> USER DASHBOARD >>>>>>>>> -->
+				<div>
+					<ul class='nav navbar-nav navbar-right'>
+						<li><a href ng-click="main.logOut()">Log Out</a></li>
+					</ul>
+				</div>
+				<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+				<!-- >>>>>>>>> USER MENU >>>>>>>>> -->
+				<div ng-if>
+					<ul class='nav navbar-nav navbar-right'>
+						<li><a href>Business Dashboard</a></li>
+						<li><a href="#/checkout">2 Checkout</a></li>
+					</ul>
+				</div>
+				<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+			</div>
+			<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+
+
+			<!-- >>>>>>>>> BUSINESS >>>>>>>>> -->
+			<div class="navbar-collapse collapse" ng-if="main.loggedIn && main.business">
+					<ul class='nav navbar-nav navbar-right'>
+						<li><a href ng-click="main.logOut()">Log Off</a></li>
+						<li><a href="#/business_order_history">Business Order History</a></li>
+						<li><a href="#/business_menu_table">Menu</a></li>
+					</ul>
+			</div>
+			<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+		</div>
+	</nav>
+	<div ng-view></div>
 </body>
+
 </html>
 
 
