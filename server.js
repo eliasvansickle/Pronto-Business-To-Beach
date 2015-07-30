@@ -2,6 +2,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var nodemailer = require('nodemailer');
 var app = express();
 
 app.use(bodyParser.json());

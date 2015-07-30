@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="row col-md-12">
 				<div class="col-md-2 col-md-offset-10">
-					<input class='form-control filter_businesses' type="text" placeholder='Filter Businesses'>
+					<input class='form-control filter_businesses' ng-model='filter_name' type="text" placeholder='Filter Businesses'>
 				</div>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
 
 		<h1>ANGULAR STUFF FROM THIS POINT ON</h1>
 		<div class="container">
-			<div class="jumbotron biz" ng-repeat="business in user.businesses">
+			<div class="jumbotron biz" ng-repeat="business in user.businesses | filter: filter_name">
 				<h1 ng-bind="business.business_name"></h1>
 				<a href ng-click="user.visitMenu(business._id)">
 					<div class="happy_bowls"></div>

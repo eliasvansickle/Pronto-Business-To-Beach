@@ -37,7 +37,9 @@ application.config(function($routeProvider) {
 		controllerAs: 'user'
 	})
 	.when('/checkout', {
-		templateUrl: './partials/checkout.html'
+		templateUrl: './partials/checkout.html',
+		controller: 'userController',
+		controllerAs: 'user'
 	})
 	.when('/successful_order', {
 		templateUrl: './partials/successful_order.html'

@@ -36,4 +36,23 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	this.addToCartTemplate = {
 		templateUrl: "addToCart.html"
 	}
+	$scope.$on('checkout', function() {
+		userFactory.showCartItems(function(data) {
+			console.log('callback here to set scope', data);
+			// $scope.cartItems = data.cart;
+		})
+	})
 })
+
+
+
+
+
+
+
+
+
+
+
+
+

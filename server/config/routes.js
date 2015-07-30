@@ -76,6 +76,9 @@ module.exports = function(app) {
 	app.post('/business/profile/update/:id', function(req, res) {
 		businessController.updateBusinessProfile(req, res);
 	})
+	app.get('/cart/show', function(req, res) {
+		userController.showCartItems(req, res);
+	})
 }
 
 

@@ -72,6 +72,9 @@ userController = {
 				res.json({message: 'deleted!'});
 			}
 		})
+	},
+	showCartItems: function(req, res) {
+		res.json(req.session);
 	}
 
 }
