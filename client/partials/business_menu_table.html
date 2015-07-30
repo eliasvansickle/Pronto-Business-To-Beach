@@ -26,13 +26,13 @@
 				</div>
 				<form class='form-group business_add_menu_item_form col-md-12'>
 					<div class="row">
-						<input ng-model='newItem.item' class='form-control' type="text" placeholder='Menu Item'>
+						<input ng-model='business.newItem.item' class='form-control' type="text" placeholder='Menu Item'>
 					</div>
 					<div class="row">
-						<input ng-model='newItem.price' class='form-control' type="number" placeholder='Price'>
+						<input ng-model='business.newItem.price' class='form-control' type="number" placeholder='Price'>
 					</div>
 					<div class="row">
-						<input ng-click='business.createItem(newItem)' class='form-control' type="submit" value='Add Item'>
+						<input ng-click='business.createItem(business.newItem)' class='form-control' type="submit" value='Add Item'>
 					</div>
 				</form>
 			</div>
@@ -45,9 +45,9 @@
 						<th></th>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Burger</td>
-							<td>$12</td>
+						<tr ng-repeat='item in items | orderBy: "-created_at" | filter: filter_name '>
+							<td ng-bind='item.menu_item'></td>
+							<td ng-bind='item.price'></td>
 							<td>
 								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateMenuItem">Edit</button>
 								<button type="button" class="btn btn-danger">Delete</button>

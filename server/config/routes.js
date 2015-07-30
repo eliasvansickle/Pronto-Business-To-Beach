@@ -61,6 +61,12 @@ module.exports = function(app) {
 	app.post('/business/item/update/:id', function (req, res) {
 		businessController.updateMenuItem(req, res);
 	})
+	app.post('/business/item/new/:id', function(req, res) {
+		businessController.createNewMenuItem(req, res);
+	})
+	app.get('/business/items/show/:id', function(req, res) {
+		businessController.showMenuItems(req, res);
+	})
 }
 
 
