@@ -9,5 +9,4 @@ application.controller('businessController', function($scope) {
 		console.log(newItem);
 		console.log(currentClient);
 	}
-
 })
