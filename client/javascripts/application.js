@@ -69,7 +69,9 @@ application.config(function($routeProvider) {
 		controller: 'adminUpdateTaskforceController'
 	})
 	.when('/business_menu_table', {
-		templateUrl: './partials/business_menu_table.html'
+		templateUrl: './partials/business_menu_table.html',
+		controller: 'businessController',
+		controllerAs: 'business'
 	})
 	.when('/taskforce_receive_orders', {
 		templateUrl: './partials/taskforce_receive_orders.html'
