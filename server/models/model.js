@@ -8,6 +8,7 @@ var userSchema = new mongoose.Schema({
 	cell_phone: {type: Number},
 	password: String,
 	passconf: String,
+	orders: [{type: Schema.Types.ObjectId, ref: 'Order'}],
 	created_at: {type: Date, default: new Date},
 	updated_at: {type: Date, default: new Date}
 })
@@ -25,6 +26,7 @@ var businessSchema = new mongoose.Schema({
 	status: String,
 	image: String,
 	menu: [{type: Schema.Types.ObjectId, ref: 'Menu'}],
+	orders: [{type: Schema.Types.ObjectId, ref: 'Order'}],
 	created_at: {type: Date, default: new Date},
 	updated_at: {type: Date, default: new Date}
 })
@@ -33,8 +35,18 @@ var menuSchema = new mongoose.Schema({
 	menu_item: {type: String, required: true},
 	price: {type: Number, required: true},
 	_business: {type: Schema.ObjectId, req: 'Business'},
+	_order: {type: Schema.ObjectId, req: 'Order'},
 	created_at: {type: Date, default: new Date},
 	updated_at: {type: Date, default: new Date}
+})
+
+var orderSchema = new mongoose.Schema({
+	total_price: Number,
+	premium: Number,
+	_user: {type: Schema.ObjectId, req: 'User'},
+	_business: {type: Schema.ObjectId, req: 'Business'},
+	ordered_items: [{type: Schema.Types.ObjectId, ref: 'Menu'}],
+	created_at: Date
 })
 
 var taskforceSchema = new mongoose.Schema({
@@ -48,6 +60,9 @@ var taskforceSchema = new mongoose.Schema({
 	created_at: {type: Date, default: new Date},
 	updated_at: {type: Date, default: new Date}
 })
+
+
+mongoose.model('Order', orderSchema);
 
 mongoose.model('User', userSchema);
 userSchema.path('name').required(true, 'Name is required');
