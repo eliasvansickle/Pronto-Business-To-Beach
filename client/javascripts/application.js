@@ -79,7 +79,9 @@ application.config(function($routeProvider) {
 		templateUrl: './partials/taskforce_receive_orders.html'
 	})
 	.when('/business_profile', {
-		templateUrl: './partials/business_profile.html'
+		templateUrl: './partials/business_profile.html',
+		controller: 'businessController',
+		controllerAs: 'biz'
 	})
 
 	//////////////////////////////////////////////////////////////TEMPORARY ABOVE///////////////////////////

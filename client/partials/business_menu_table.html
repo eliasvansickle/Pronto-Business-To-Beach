@@ -9,7 +9,7 @@
 					<li><a href='#/'>Log Off</a></li>
 					<li><a href="#/business_order_history">Business Order History</a></li>
 					<li><a href="#/business_current_orders">Business Current Orders</a></li>
-					<li><a href="#/business_profile">Business Profile</a></li>
+					<li><a href ng-click='business.showBusinessProfile(currentClient)'>Business Profile</a></li>
 				</ul>
 			</div>
 		</div>
@@ -63,7 +63,6 @@
 						</tr>
 					</tbody>
 				</table>
-
 				<div class="modal fade" id="updateMenuItem" tabindex="-1" role="dialog">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">

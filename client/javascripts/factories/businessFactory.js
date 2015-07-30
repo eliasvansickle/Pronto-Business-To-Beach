@@ -1,5 +1,6 @@
 application.factory('businessFactory', function ($http) {
 	return {
+		currentBusiness: null,
 		updateMenuItem: function(updatedItem, callback) {
 			$http.post("/business/item/update/" + updatedItem.itemID, updatedItem).success(function() {
 				callback();
@@ -18,6 +19,17 @@ application.factory('businessFactory', function ($http) {
 		deleteItem: function(itemID, callback) {
 			$http.delete("/business/item/delete/" + itemID).success(function() {
 				callback();
+			})
+		},
+		showCurrentBusiness: function(business_id, callback) {
+			$http.get('/business/profile/show/'+business_id).success(function(data) {
+				this.currentBusiness = data;
+				callback(data);
+			})
+		},
+		updateCurrentBusiness: function(business, callback) {
+			$http.post('/business/profile/update/'+business._id, business).success(function(data) {
+				callback(data);
 			})
 		}
 	}

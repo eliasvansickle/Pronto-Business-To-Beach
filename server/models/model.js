@@ -23,6 +23,7 @@ var businessSchema = new mongoose.Schema({
 	state: String,
 	zip_code: Number,
 	status: String,
+	image: String,
 	menu: [{type: Schema.Types.ObjectId, ref: 'Menu'}],
 	created_at: {type: Date, default: new Date},
 	updated_at: {type: Date, default: new Date}

@@ -34,7 +34,6 @@ businessController = {
 				console.log("ERROR", err);
 			}
 			else {
-				console.log(businesses);
 				res.json(businesses);
 			}
 		})
@@ -76,7 +75,6 @@ businessController = {
 				console.log('ERROR', err);
 			}
 			else {
-				console.log('successfully deleted business');
 				res.json({message: 'deleted business'});
 			}
 		})
@@ -92,7 +90,6 @@ businessController = {
 					 		console.log("ERROR", err);
 					 	}
 					 	else {
-					 		console.log('successfully updated menu');
 					 		res.json(true);
 					 	}
 					 }
@@ -114,7 +111,6 @@ businessController = {
 						console.log('ERROR', err);
 					}
 					else {
-						console.log('successfully added menu item');
 						res.json({success: 'successfully added menu item'});
 
 					}
@@ -131,7 +127,6 @@ businessController = {
 				console.log('ERR', err);
 			}
 			else {
-				console.log('found the business');
 				res.json(business);
 			}
 		})
@@ -139,6 +134,39 @@ businessController = {
 	deleteItem: function(req, res) {
 		Menu.find({_id: req.params.id}).remove().exec();
 		res.json("done");
+	},
+	showBusinessProfile: function(req, res) {
+		Business.findOne({_id: req.params.id}, function(err, business) {
+			if(err) {
+				console.log('ERROR', err);
+			}
+			else {
+				res.json(business);
+			}
+		})
+	},
+	updateBusinessProfile: function(req, res) {
+		Business.update({_id: req.params.id}, {
+			$set: {
+				business_name: req.body.business_name,
+				email: req.body.email,
+				phone: req.body.phone,
+				street_address: req.body.street_address,
+				city: req.body.city,
+				state: req.body.state,
+				zip_code: req.body.zip_code,
+				updated_at: Date()
+			}
+		}, 
+		function(err) {
+			if(err) {
+				console.log('ERROR', err);
+			}
+			else {
+				res.json({success: 'Successfully Updated Business'});
+			}
+
+		})
 	}
 }
 

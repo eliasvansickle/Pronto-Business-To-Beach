@@ -1,4 +1,4 @@
-application.controller('businessController', function ($timeout, $scope, businessFactory) {
+application.controller('businessController', function ($timeout, $location, $scope, businessFactory) {
 
 	$scope.$emit('checkSession');
 	var currentClient;
@@ -10,9 +10,9 @@ application.controller('businessController', function ($timeout, $scope, busines
 		})
 	}
 
-
 	$scope.$on('currentClient', function (event, args) {
 		currentClient = {client_id: args.data.client_id, client_type: args.data.type};
+		$scope.currentClient = currentClient;
 		showItems();
 	})
 
@@ -61,4 +61,33 @@ application.controller('businessController', function ($timeout, $scope, busines
 			showItems();
 		})
 	}
+	this.showBusinessProfile = function(currentClient) {
+		businessFactory.showCurrentBusiness(currentClient.client_id, function(data) {
+			
+			$scope.$parent.currentBiz = data;
+			$location.path('/business_profile');
+		})
+	}
+	this.updateBusinessProfile = function(business) {
+		console.log(business);
+		businessFactory.updateCurrentBusiness(business, function(data) {
+			$scope.successfulUpdate = data.success;
+		})
+	}
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

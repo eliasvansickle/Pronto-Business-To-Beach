@@ -70,6 +70,12 @@ module.exports = function(app) {
 	app.delete('/business/item/delete/:id', function(req, res) {
 		businessController.deleteItem(req, res);
 	})
+	app.get('/business/profile/show/:id', function(req, res) {
+		businessController.showBusinessProfile(req, res);
+	})
+	app.post('/business/profile/update/:id', function(req, res) {
+		businessController.updateBusinessProfile(req, res);
+	})
 }
 
 

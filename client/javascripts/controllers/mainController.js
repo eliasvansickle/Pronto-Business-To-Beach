@@ -1,5 +1,6 @@
 application.controller('mainController', function ($scope, $location, authenticationFactory) {
 	var self = this;
+	$scope.currentBiz = {};
 
 	var checkSession = function() {
 		authenticationFactory.checkSession(function(data) {

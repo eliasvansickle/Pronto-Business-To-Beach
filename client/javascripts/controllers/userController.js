@@ -11,5 +11,4 @@ application.controller('userController', function (userFactory, businessFactory)
 		})
 	}
 
-	this.
 })
