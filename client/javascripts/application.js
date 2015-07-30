@@ -1,4 +1,4 @@
-var application = angular.module('application', ['ngRoute']);
+var application = angular.module('application', ['ngRoute', 'ui.bootstrap']);
 
 
 application.config(function($routeProvider) {
@@ -32,7 +32,9 @@ application.config(function($routeProvider) {
 		controllerAs: 'user'
 	})
 	.when('/menu', {
-		templateUrl: './partials/menu.html'
+		templateUrl: './partials/menu.html',
+		controller: 'userController',
+		controllerAs: 'user'
 	})
 	.when('/checkout', {
 		templateUrl: './partials/checkout.html'
