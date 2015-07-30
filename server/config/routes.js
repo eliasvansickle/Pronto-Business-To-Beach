@@ -58,6 +58,12 @@ module.exports = function(app) {
 	app.get('/session/logOut', function(req, res) {
 		sessionController.logOut(req, res);
 	})
+	app.post('/business/item/new/:id', function(req, res) {
+		businessController.createNewMenuItem(req, res);
+	})
+	app.get('/business/items/show/:id', function(req, res) {
+		businessController.showMenuItems(req, res);
+	})
 }
 
 

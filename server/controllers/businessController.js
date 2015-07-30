@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Business = mongoose.model('Business');
+var Menu = mongoose.model('Menu');
 
 businessController = {
 	createBusiness: function(req, res) {
@@ -77,6 +78,44 @@ businessController = {
 			else {
 				console.log('successfully deleted business');
 				res.json({message: 'deleted business'});
+			}
+		})
+	},
+	createNewMenuItem: function(req, res) {
+		Business.findOne({_id: req.params.id}, function(err, business) {
+			var menu = new Menu({
+				menu_item: req.body.item,
+				price: req.body.price,
+				_business: business._id,
+				created_at: Date()
+			})
+			business.menu.push(menu);
+
+			menu.save(function(err) {
+				business.save(function(err) {
+					if(err) {
+						console.log('ERROR', err);
+					}
+					else {
+						console.log('successfully added menu item');
+						res.json({success: 'successfully added menu item'});
+
+					}
+				})
+			})
+		})
+	},
+	showMenuItems: function(req, res) {
+		Business
+		.findOne({_id: req.params.id})
+		.populate('menu')
+		.exec(function(err, business) {
+			if(err) {
+				console.log('ERR', err);
+			}
+			else {
+				console.log('found the business');
+				res.json(business);
 			}
 		})
 	}
