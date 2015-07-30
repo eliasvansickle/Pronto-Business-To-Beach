@@ -2,14 +2,12 @@ application.controller('businessController', function($scope) {
 	$scope.$emit('checkSession');
 
 	$scope.$on('currentClient', function(event, args) {
-		console.log(args);
-		console.log(event);
-		// var currentClient = args;
-		// console.log(currentClient);
+		var currentClient = {client_id: args.data.client_id, client_type: args.data.type};
 	})
 
 	this.createItem = function(newItem) {
 		console.log(newItem);
+		console.log(currentClient);
 	}
 
 })
