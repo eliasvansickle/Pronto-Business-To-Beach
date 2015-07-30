@@ -11,24 +11,21 @@
 					<td ng-bind="item.menu_item"></td>
 					<td ng-bind-template="${{ item.price }}"></td>
 					<td>
-						<button popover-placement="right" popover-template="user.addToCartTemplate.templateUrl" class="btn btn-default">Add</button>
+						<button popover-placement="right" popover-template="user.addToCartTemplate.templateUrl" class="btn btn-default" popover-trigger="click">Add</button>
 					</td>
 				</tr>
 			</tbody>
 		</table>
-
-
 	</div>
 </div>
 
 <script type="text/ng-template" id="addToCart.html">
 	<h3> {{item.menu_item}} </h3>
 	<div class="form-group">
-		<label>Price:</label>
-		<input type="number" ng-model="item.price" class="form-control">
 		<label>Quantity:</label>
-		<input type="number" ng-model="item.quantity" class="form-control">
+		<input type="number" ng-model="itemCart.quantity" class="form-control">
+		<label>Total: ${{ item.price * itemCart.quantity || 0}}</label>
 		<br>
-		<button type="submit" class="btn btn-default">Add</button>
+		<button type="submit" class="btn btn-default" ng-click="user.addToCart(item._id, itemCart)">Add</button>
 	</div>
 </script>

@@ -78,7 +78,7 @@
 			<div class="navbar-collapse collapse" ng-if="main.loggedIn && main.user">
 				<!-- >>>>>>>>> LOG OUT + CART >>>>>>>>> -->
 					<ul class='nav navbar-nav navbar-right'>
-						<li><a href ng-click="main.changeLocation('checkout')">2 Cart</a></li>
+						<li><a href ng-click="main.changeLocation('checkout')">Cart ({{ main.cartQuantity || 0 }})</a></li>
 						<li><a href ng-click="main.logOut()">Log Out</a></li>
 					</ul>
 				<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
