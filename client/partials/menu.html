@@ -21,25 +21,28 @@
 				<th>Add To Cart</th>
 			</thead>
 			<tbody>
-				<tr>
-					<td><input type="hidden" value='lorem'>lorem</td>
-					<td>$5</td>
-					<td><a href="">Add</a></td>
-				</tr>
-				<tr>
-					<td><input type="hidden" value='lorem'>lorem</td>
-					<td>$5</td>
-					<td><a href="">Add</a></td>
-				</tr>
-				<tr>
-					<td><input type="hidden" value='lorem'>lorem</td>
-					<td>$5</td>
-					<td><a href="">Add</a></td>
-				</tr>
-				<tr>
-					<td>WORK ON MAKING POP UP FOR ADD TO CART</td>
+				<tr ng-repeat="item in user.items">
+					<td ng-bind="item.menu_item"></td>
+					<td ng-bind-template="${{ item.price }}"></td>
+					<td>
+						<button popover-placement="right" popover-template="user.addToCartTemplate.templateUrl" class="btn btn-default" popover-trigger="focus">Add</button>
+					</td>
 				</tr>
 			</tbody>
 		</table>
+
+
 	</div>
 </div>
+
+<script type="text/ng-template" id="addToCart.html">
+	<h3> {{item.menu_item}} </h3>
+	<div class="form-group">
+		<label>Price:</label>
+		<input type="number" ng-model="item.price" class="form-control">
+		<label>Quantity:</label>
+		<input type="number" ng-model="item.quantity" class="form-control">
+		<br>
+		<button type="submit" class="btn btn-default">Add</button>
+	</div>
+</script>
