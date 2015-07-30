@@ -8,6 +8,7 @@ application.controller('mainController', function ($scope, $location, authentica
 			}
 			else
 			{
+				$scope.$broadcast('currentClient', {data});
 				self.loggedIn = true;
 				if (data.type == "user") {
 					self.user = true;

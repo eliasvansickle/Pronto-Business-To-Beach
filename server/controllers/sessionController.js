@@ -72,7 +72,7 @@ sessionController = {
 			res.json({ status: false });
 		}
 		else {
-			res.json({ status: true, type: req.session.type });
+			res.json({ status: true, type: req.session.type, client_id: req.session._id});
 			console.log(req.session, 'session!!!');
 		}
 		res.end('done');
