@@ -29,6 +29,7 @@ application.controller('userController', function ($scope, $timeout, $location, 
 
 	this.visitMenu = function(businessID) {
 		userFactory.visitMenu(businessID, function() {
+			$scope.$emit("locationChange", {location: "menu"});
 			$location.path("/menu");
 		})
 	}

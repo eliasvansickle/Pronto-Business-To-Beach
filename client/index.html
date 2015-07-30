@@ -76,20 +76,32 @@
 
 			<!-- >>>>>>>>>>>>>>>>>> USER >>>>>>>>>>>>>>>>>> -->
 			<div class="navbar-collapse collapse" ng-if="main.loggedIn && main.user">
-				<!-- >>>>>>>>> USER DASHBOARD >>>>>>>>> -->
-				<div>
+				<!-- >>>>>>>>> LOG OUT + CART >>>>>>>>> -->
 					<ul class='nav navbar-nav navbar-right'>
+						<li><a href ng-click="main.changeLocation('checkout')">2 Cart</a></li>
 						<li><a href ng-click="main.logOut()">Log Out</a></li>
 					</ul>
-				</div>
 				<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 
-				<!-- >>>>>>>>> USER MENU >>>>>>>>> -->
-				<div ng-if>
-					<ul class='nav navbar-nav navbar-right'>
-						<li><a href>Business Dashboard</a></li>
-						<li><a href="#/checkout">2 Checkout</a></li>
-					</ul>
+				<!-- >>>>>>>>> DASHBOARD >>>>>>>>> -->
+				<div ng-switch on="main.location">
+					<div ng-switch-when="user_dashboard">
+					</div>
+					<div ng-switch-when="menu">
+						<ul class='nav navbar-nav navbar-right'>
+							<li><a href ng-click="main.changeLocation('user_dashboard')">Business Dashboard</a></li>
+						</ul>
+					</div>
+					<div ng-switch-when="checkout">
+						<ul class='nav navbar-nav navbar-right'>
+							<li><a href ng-click="main.changeLocation('user_dashboard')">Business Dashboard</a></li>
+						</ul>
+					</div>
+					<div ng-switch-when="successful_order">
+						<ul class='nav navbar-nav navbar-right'>
+							<li><a href ng-click="main.changeLocation('user_dashboard')">Business Dashboard</a></li>
+						</ul>
+					</div>
 				</div>
 				<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 			</div>

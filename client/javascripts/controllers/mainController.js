@@ -36,7 +36,18 @@ application.controller('mainController', function ($scope, $location, authentica
 	this.logOut = function() {
 		authenticationFactory.logOut(function() {
 			self.loggedIn = false;
+			self.location = null;
 			$location.path("/");
 		})
+	}
+
+	$scope.$on("locationChange", function (events, args) {
+		self.location = args.location;
+	})
+
+	this.changeLocation = function(location) {
+		self.location = location;
+		console.log(self.location);
+		$location.path("/" + location);
 	}
 })

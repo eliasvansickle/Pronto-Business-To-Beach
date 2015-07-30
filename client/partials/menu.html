@@ -1,18 +1,4 @@
 <div class="menu_page">
-	<!-- <nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<span class='navbar-brand'><a href="#/">PRONTO DELIVERY CO</a></span>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class='nav navbar-nav navbar-right'>
-					<li><a href='#/'>Log Out (INCORPORATE SESSION HERE)</a></li>
-					<li><a href="#/user_dashboard">Business Dashboard</a></li>
-					<li><a href="#/checkout">2 Checkout</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav> -->
 	<div class="menu container">
 		<table class='table'>
 			<thead>
@@ -25,7 +11,7 @@
 					<td ng-bind="item.menu_item"></td>
 					<td ng-bind-template="${{ item.price }}"></td>
 					<td>
-						<button popover-placement="right" popover-template="user.addToCartTemplate.templateUrl" class="btn btn-default" popover-trigger="focus">Add</button>
+						<button popover-placement="right" popover-template="user.addToCartTemplate.templateUrl" class="btn btn-default">Add</button>
 					</td>
 				</tr>
 			</tbody>
