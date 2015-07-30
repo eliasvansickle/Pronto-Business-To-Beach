@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Business = mongoose.model('Business');
+var Menu = mongoose.model('Menu');
 
 businessController = {
 	createBusiness: function(req, res) {
@@ -79,6 +80,23 @@ businessController = {
 				res.json({message: 'deleted business'});
 			}
 		})
+	},
+	updateMenuItem: function(req, res) {
+		Menu.update( { _id: req.params.id },
+					 { 
+					 	$set: { menu_item: req.body.menu_item,
+					 			price: req.body.price }
+					 },
+					 function (err) {
+					 	if (err) {
+					 		console.log("ERROR", err);
+					 	}
+					 	else {
+					 		console.log('successfully updated menu');
+					 		res.json(true);
+					 	}
+					 }
+					)
 	}
 }
 

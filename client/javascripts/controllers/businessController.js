@@ -1,4 +1,4 @@
-application.controller('businessController', function($scope) {
+application.controller('businessController', function ($scope, businessFactory) {
 	$scope.$emit('checkSession');
 
 	$scope.$on('currentClient', function(event, args) {
@@ -10,5 +10,11 @@ application.controller('businessController', function($scope) {
 
 	this.createItem = function(newItem) {
 		console.log(newItem);
+	}
+
+	this.updateMenuItem = function(itemID, updatedItem) {
+		businessFactory.updateMenuItem(itemID, updateMenuItem, function() {
+
+		})
 	}
 })
