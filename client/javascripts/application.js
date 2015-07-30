@@ -76,6 +76,9 @@ application.config(function($routeProvider) {
 	.when('/taskforce_receive_orders', {
 		templateUrl: './partials/taskforce_receive_orders.html'
 	})
+	.when('/business_profile', {
+		templateUrl: './partials/business_profile.html'
+	})
 
 	//////////////////////////////////////////////////////////////TEMPORARY ABOVE///////////////////////////
 	.otherwise({

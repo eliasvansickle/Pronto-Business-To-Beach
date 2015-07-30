@@ -235,7 +235,17 @@ div.relax {
 }
 
 
+/*/////////////////////////////////////////////////////////////////////////////ADMIN UPDATE BUSINESS PROFILE PAGE///////////*/
 
+.biz_update_profile_form {
+	margin-top: 30px;
+}
+.biz_update_profile_header {
+	margin-top: 80px;
+}
+.biz_update_profile_form .row {
+	margin-bottom: 20px;
+}
 
 
 

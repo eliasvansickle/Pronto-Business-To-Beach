@@ -1,0 +1,46 @@
+<div class="container biz_update_profile_container">
+	<div class="row">
+		<h1 class='biz_update_profile_header col-md-offset-4'>Update Business</h1>
+	</div>
+	<form class='form-group biz_update_profile_form col-md-5 col-md-offset-4'>
+		<div class="row">
+			<input ng-value='business.business_name' ng-model='business.business_name' class='form-control' type="text" placeholder='Business Name'>
+		</div>
+		<div class="row">
+			<input ng-value='business.email' ng-model='business.email' class='form-control' type="email" placeholder='Email'>
+		</div>
+		<div class="row">
+			<input ng-value='business.phone' ng-model='business.phone' class='form-control' type="tel" placeholder='Phone Number'>
+		</div>
+		<div class="row">
+			Business Image:
+			<input ng-model='business.image' class='form-control' type="file">
+		</div>
+		<div class="row">
+			Street Address:
+			<input ng-value='business.street_address' ng-model='business.street_address' class='form-control' type="text" placeholder='10 Main St'>
+		</div>
+		<div class="row">
+			City:
+			<input ng-value='business.city' ng-model='business.city' class='form-control' type="text" placeholder='Amagansett'>
+		</div>
+		<div class="row">
+			State:
+			<select ng-value='business.state' ng-model='business.state' class='form-control' name="state">
+				<option value=""></option>
+				<option value="NY">New York</option>
+			</select>
+		</div>
+		<div class="row">
+			Zip Code:
+			<input ng-value='business.zip_code' ng-model='business.zip_code' class='form-control' type="text" placeholder='55555'>
+		</div>
+		<div class="row">
+			<input ng-click='updateBusiness(business)' class='form-control' type="submit" value='Update'>
+		</div>
+	</form>
+</div>
+
+
+
+
