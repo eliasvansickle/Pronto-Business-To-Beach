@@ -77,7 +77,6 @@ application.config(function($routeProvider) {
 		templateUrl: './partials/taskforce_receive_orders.html'
 	})
 
-
 	//////////////////////////////////////////////////////////////TEMPORARY ABOVE///////////////////////////
 	.otherwise({
 		redirectTo: '/'

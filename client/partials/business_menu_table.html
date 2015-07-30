@@ -26,13 +26,13 @@
 				</div>
 				<form class='form-group business_add_menu_item_form col-md-12'>
 					<div class="row">
-						<input class='form-control' type="text" placeholder='Menu Item'>
+						<input ng-model='newItem.item' class='form-control' type="text" placeholder='Menu Item'>
 					</div>
 					<div class="row">
-						<input class='form-control' type="number" placeholder='Price'>
+						<input ng-model='newItem.price' class='form-control' type="number" placeholder='Price'>
 					</div>
 					<div class="row">
-						<input class='form-control' type="submit" value='Add Item'>
+						<input ng-click='business.createItem(newItem)' class='form-control' type="submit" value='Add Item'>
 					</div>
 				</form>
 			</div>
