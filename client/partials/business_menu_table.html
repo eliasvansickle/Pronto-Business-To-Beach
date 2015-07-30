@@ -43,15 +43,22 @@
 					<thead>
 						<th>Item</th>
 						<th>Price</th>
+						<th>Actions</th>
 						<th></th>
 					</thead>
 					<tbody>
-						<tr ng-repeat='item in items | orderBy: "-created_at" | filter: filter_name '>
+						<tr ng-repeat='item in business.items | orderBy: "-created_at" | filter: filter_name'>
 							<td ng-bind='item.menu_item'></td>
-							<td ng-bind='item.price'></td>
+							<td ng-bind-template='${{ item.price }}'></td>
 							<td>
-								<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateMenuItem">Edit</button>
-								<button type="button" class="btn btn-danger">Delete</button>
+								<button type="button" class="btn btn-primary" data-toggle="modal" data-item="{{ { id: item._id, menu_item: item.menu_item, price: item.price } }}" data-target="#updateMenuItem">Edit</button>
+								<button type="button" class="btn btn-danger" ng-click="business.deleteItem(item._id)">Delete</button>
+							</td>
+							<td ng-if="item.updated">
+								<div class="alert alert-success alert-dismissible" role="alert">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									Item updated!
+								</div>
 							</td>
 						</tr>
 					</tbody>
@@ -68,17 +75,17 @@
 								<form>
 									<div class="form-group">
 										<label for="item" class="control-label">Item:</label>
-										<input type="text" class="form-control" name="item">
+										<input type="text" class="form-control" name="menu_item" ng-model="business.updatedItem.menu_item">
 									</div>
 									<div class="form-group">
 										<label for="price" class="control-label">Price:</label>
-										<input type="number" class="form-control" name="price">
+										<input type="number" class="form-control" name="price" ng-model="business.updatedItem.price">
 									</div>
 								</form>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary" ng-click="business.updateMenuItem()">Update</button>
+								<button type="button" class="btn btn-primary" ng-click="business.updateMenuItem(business.updatedItem)">Update</button>
 							</div>
 						</div>
 					</div>

@@ -135,6 +135,10 @@ businessController = {
 				res.json(business);
 			}
 		})
+	},
+	deleteItem: function(req, res) {
+		Menu.find({_id: req.params.id}).remove().exec();
+		res.json("done");
 	}
 }
 

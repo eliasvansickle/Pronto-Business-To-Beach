@@ -10,7 +10,8 @@ app.use(express.static(__dirname + '/client'));
 app.use(session({
 	secret: 'secret_here',
 	resave: false,
-	saveUninitialized: true
+	saveUninitialized: true,
+	cookie  : { maxAge  : new Date(Date.now() + (60 * 1000 * 30)) }
 }))
 
 require('./server/config/mongoose.js');

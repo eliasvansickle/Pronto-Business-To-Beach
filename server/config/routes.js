@@ -67,6 +67,9 @@ module.exports = function(app) {
 	app.get('/business/items/show/:id', function(req, res) {
 		businessController.showMenuItems(req, res);
 	})
+	app.delete('/business/item/delete/:id', function(req, res) {
+		businessController.deleteItem(req, res);
+	})
 }
 
 

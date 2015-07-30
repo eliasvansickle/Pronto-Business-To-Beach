@@ -1,19 +1,17 @@
-application.controller('businessController', function ($scope, businessFactory) {
+application.controller('businessController', function ($timeout, $scope, businessFactory) {
 
 	$scope.$emit('checkSession');
 	var currentClient;
 	var self = this;
 
 	var showItems = function() {
-
-		businessFactory.showItems(currentClient.client_id, function(data) {
-			$scope.items = data.menu;
-			console.log(data.menu);
+		businessFactory.showItems(currentClient.client_id, function (data) {
+			self.items = data.menu;
 		})
 	}
 
 
-	$scope.$on('currentClient', function(event, args) {
+	$scope.$on('currentClient', function (event, args) {
 		currentClient = {client_id: args.data.client_id, client_type: args.data.type};
 		showItems();
 	})
@@ -26,9 +24,41 @@ application.controller('businessController', function ($scope, businessFactory) 
 		self.newItem = {};
 	}
 
-	this.updateMenuItem = function(itemID, updatedItem) {
-		businessFactory.updateMenuItem(itemID, updateMenuItem, function() {
+	$("#updateMenuItem").on('show.bs.modal', function (e) {
+		//get data-item attribute of the clicked element
+		var itemObj = $(e.relatedTarget).data("item");
+		var itemID = itemObj.id;
+		var menu_item = itemObj.menu_item;
+		var price = itemObj.price;
 
+		//populate the textbox
+		$(e.currentTarget).find('input[name="menu_item"]').val(menu_item);
+		$(e.currentTarget).find('input[name="price"]').val(price);
+		$(e.currentTarget).find('input[name="itemID"]').val(itemID);
+		self.updatedItem = {};
+		self.updatedItem.menu_item = menu_item;
+		self.updatedItem.price = price;
+		self.updatedItem.itemID = itemID;
+	})
+
+	this.updateMenuItem = function(updatedItem) {
+		businessFactory.updateMenuItem(updatedItem, function() {
+			$("#updateMenuItem").modal('hide');
+			showItems();
+			
+			$timeout(function(){
+				angular.forEach(self.items, function (item) {
+					if (item._id == updatedItem.itemID) {
+						item.updated = true;
+					}
+				})
+			}, 400)
+		})
+	}
+
+	this.deleteItem = function(itemID) {
+		businessFactory.deleteItem(itemID, function() {
+			showItems();
 		})
 	}
 })
