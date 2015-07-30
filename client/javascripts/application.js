@@ -27,7 +27,9 @@ application.config(function($routeProvider) {
 	})
 	//////////////////////////////////////////////////////////////TEMPORARY BELOW///////////////////////////
 	.when('/user_dashboard', {
-		templateUrl: './partials/user_dashboard.html'
+		templateUrl: './partials/user_dashboard.html',
+		controller: 'userController',
+		controllerAs: 'user'
 	})
 	.when('/menu', {
 		templateUrl: './partials/menu.html'

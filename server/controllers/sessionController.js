@@ -73,15 +73,13 @@ sessionController = {
 		}
 		else {
 			res.json({ status: true, type: req.session.type, client_id: req.session._id});
-			console.log(req.session, 'session!!!');
 		}
 		res.end('done');
 	},
 
 	logOut: function (req, res) {
 		req.session.destroy(function (err) {
-			console.log("controller here SESSION DESTROYED");
-			console.log(req.session);
+			console.log("SESSION DESTROYED");
 			res.json("done");
 		});
 	}
