@@ -12,10 +12,10 @@
 			<tbody>
 				<tr ng-repeat='cartItem in cartItems'>
 					<td ng-bind='cartItem.menu_item'></td>
-					<td ng-bind='cartItem.price'></td>
+					<td>${{cartItem.price}}</td>
 					<td ng-bind='cartItem.quantity'></td>
 					<td ng-bind='cartItem.total_price'></td>
-					<td><p><a href>Update</a></p><p><a href>Delete</a></p></td>
+					<td><p><a href popover-placement="right" popover-template="user.updateCartItemTemplate.templateUrl" popover-trigger="click">Update</a></p><p><a href ng-click='user.deleteCartItem(cartItem)'>Delete</a></p></td>
 				</tr>
 			</tbody>
 		</table>
@@ -24,4 +24,15 @@
 	</div>
 </div>
 
+<script type="text/ng-template" id='updateCartItem.html'>
+	<h3> {{cartItem.menu_item}} </h3>
+	<div class='form-group'>
+		<label>Quanitity</label>
+		<input type='number' ng-model='cartItem.quantity' class='form-control'>
+		<label>Total: ${{cartItem.price * cartItem.quantity || 0}}</label>
+		<br>
+		<button type='submit' class='btn btn-default' ng-click='user.updateCart(cartItem)'>Update</button>
+	</div>
+
+</script>
 

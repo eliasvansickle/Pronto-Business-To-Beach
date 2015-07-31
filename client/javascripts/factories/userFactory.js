@@ -22,6 +22,16 @@ application.factory('userFactory', function ($http) {
 		},
 		checkOut: function(callback) {
 			
+		},
+		updateCart: function(cartItem, callback) {
+			$http.post('/cart/update/'+cartItem._id, cartItem).success(function() {
+				callback();
+			})
+		},
+		deleteCartItem: function(cartItemId, callback) {
+			$http.delete('/cart/delete/'+cartItemId).success(function() {
+				callback();
+			})
 		}
 	}
 })

@@ -82,6 +82,12 @@ module.exports = function(app) {
 	app.post("/user/addToCart/:id", function (req, res) {
 		userController.addToCart(req, res);
 	})
+	app.post('/cart/update/:id', function(req, res) {
+		userController.updateCart(req, res);
+	})
+	app.delete('/cart/delete/:id', function(req, res) {
+		userController.deleteCartItem(req, res);
+	})
 }
 
 

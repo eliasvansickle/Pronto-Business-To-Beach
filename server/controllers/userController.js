@@ -88,6 +88,24 @@ userController = {
 			req.session.cart.push(item);
 			res.json(req.session.cart);
 		}).lean()
+	},
+	updateCart: function(req, res) {
+		req.session.cart.forEach(function(item) {
+			if(item._id == req.params.id) {
+				item.quantity = req.body.quantity,
+				item.updated_at = new Date
+			}
+		})
+		res.json(true);
+	},
+	deleteCartItem: function(req, res) {
+		req.session.cart.forEach(function(item) {
+			if(item._id == req.params.id) {
+				var index = req.session.cart.indexOf(item);
+				req.session.cart.splice(index, 1);
+				res.json(true);
+			}
+		})
 	}
 
 }

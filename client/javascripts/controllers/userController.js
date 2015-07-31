@@ -31,6 +31,10 @@ application.controller('userController', function ($scope, $timeout, $location, 
 		templateUrl: "addToCart.html"
 	}
 
+	this.updateCartItemTemplate = {
+		templateUrl: 'updateCartItem.html'
+	}
+
 	$scope.$on('successful_order', function() {
 		userFactory.checkOut(function() {
 			console.log("fired");
@@ -44,6 +48,20 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	this.addToCart = function(itemID, quantity) {
 		userFactory.addToCart(itemID, quantity, function (cart) {
 			$scope.$emit("cart", {cart: cart});
+		})
+	}
+	this.updateCart = function(cartItem) {
+		userFactory.updateCart(cartItem, function() {
+			userFactory.showCartItems(function(data) {
+				$scope.cartItems = data.cart;
+			})
+		})
+	}
+	this.deleteCartItem = function(cartItem) {
+		userFactory.deleteCartItem(cartItem._id, function() {
+			userFactory.showCartItems(function(data) {
+				$scope.cartItems = data.cart;
+			})
 		})
 	}
 })
