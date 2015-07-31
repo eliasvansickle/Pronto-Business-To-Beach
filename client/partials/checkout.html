@@ -10,32 +10,11 @@
 				<th></th>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Happy Bowl</td>
-					<td>$ 7</td>
-					<td>3</td>
-					<td>$21</td>
-					<td><p><a href="">Update</a></p><p><a href="">Delete</a></p></td>
-				</tr>
-				<tr>
-					<td>Happy Bowl</td>
-					<td>$ 7</td>
-					<td>3</td>
-					<td>$21</td>
-					<td><p><a href="">Update</a></p><p><a href="">Delete</a></p></td>
-				</tr>
-				<tr>
-					<td>Happy Bowl</td>
-					<td>$ 7</td>
-					<td>3</td>
-					<td>$21</td>
-					<td><p><a href="">Update</a></p><p><a href="">Delete</a></p></td>
-				</tr>
-				<tr>
-					<td>Happy Bowl</td>
-					<td>$ 7</td>
-					<td>3</td>
-					<td>$21</td>
+				<tr ng-repeat='cartItem in cartItems'>
+					<td ng-bind='cartItem.menu_item'></td>
+					<td ng-bind='cartItem.price'></td>
+					<td ng-bind='cartItem.quantity'></td>
+					<td ng-bind='cartItem.total_price'></td>
 					<td><p><a href="">Update</a></p><p><a href="">Delete</a></p></td>
 				</tr>
 			</tbody>

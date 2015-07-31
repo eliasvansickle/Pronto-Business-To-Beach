@@ -47,9 +47,6 @@ application.controller('mainController', function ($scope, $location, authentica
 
 	this.changeLocation = function(location) {
 		self.location = location;
-		if(location == 'checkout') {
-			$scope.$broadcast('checkout');
-		}
 		$location.path("/" + location);
 
 	}
