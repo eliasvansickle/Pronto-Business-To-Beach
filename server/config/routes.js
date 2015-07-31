@@ -82,6 +82,9 @@ module.exports = function(app) {
 	app.post("/user/addToCart/:id", function (req, res) {
 		userController.addToCart(req, res);
 	})
+	app.post("/user/checkOut", function (req, res) {
+		userController.checkOut(req, res);
+	})
 }
 
 

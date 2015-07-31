@@ -20,8 +20,10 @@ application.factory('userFactory', function ($http) {
 				callback(data);
 			})
 		},
-		checkOut: function(callback) {
-			
+		checkOut: function(total_amount, callback) {
+			$http.post("/user/checkOut", total_amount).success(function() {
+				callback();
+			})
 		}
 	}
 })

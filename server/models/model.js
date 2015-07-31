@@ -35,18 +35,22 @@ var menuSchema = new mongoose.Schema({
 	menu_item: {type: String, required: true},
 	price: {type: Number, required: true},
 	_business: {type: Schema.ObjectId, req: 'Business'},
-	_order: {type: Schema.ObjectId, req: 'Order'},
+	orders: [{type: Schema.Types.ObjectId, ref: 'Order'}],
+	_orders: {type: Schema.ObjectId, req: 'Order'},
 	created_at: {type: Date, default: new Date},
 	updated_at: {type: Date, default: new Date}
 })
 
 var orderSchema = new mongoose.Schema({
-	total_price: Number,
+	itemPrices: Array,
+	total_amount: Number,
 	premium: Number,
+	quantity: Array,
 	_user: {type: Schema.ObjectId, req: 'User'},
 	_business: {type: Schema.ObjectId, req: 'Business'},
+	// _menu: {type: Schema.ObjectId, req: 'Menu'},
 	ordered_items: [{type: Schema.Types.ObjectId, ref: 'Menu'}],
-	created_at: Date
+	created_at: Number
 })
 
 var taskforceSchema = new mongoose.Schema({

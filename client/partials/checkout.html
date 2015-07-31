@@ -10,12 +10,18 @@
 				<th></th>
 			</thead>
 			<tbody>
-				<tr ng-repeat='cartItem in cartItems'>
+				<tr ng-repeat='cartItem in user.cartItems'>
 					<td ng-bind='cartItem.menu_item'></td>
 					<td ng-bind='cartItem.price'></td>
 					<td ng-bind='cartItem.quantity'></td>
-					<td ng-bind='cartItem.total_price'></td>
+					<td ng-bind-template='${{ cartItem.total_price }}'></td>
 					<td><p><a href="">Update</a></p><p><a href="">Delete</a></p></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td ng-bind-template="${{ user.total_amount }}"></td>
 				</tr>
 			</tbody>
 		</table>
