@@ -19,6 +19,9 @@ application.factory('userFactory', function ($http) {
 			$http.post("/user/addToCart/" + itemID, quantity).success(function (data) {
 				callback(data);
 			})
+		},
+		checkOut: function(callback) {
+			
 		}
 	}
 })
