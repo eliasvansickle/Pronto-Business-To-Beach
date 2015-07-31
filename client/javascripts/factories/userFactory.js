@@ -12,13 +12,16 @@ application.factory('userFactory', function ($http) {
 		},
 		showCartItems: function(callback) {
 			$http.get('/cart/show').success(function(data) {
-				console.log(data);
+				callback(data);
 			})
 		},
 		addToCart: function(itemID, quantity, callback) {
 			$http.post("/user/addToCart/" + itemID, quantity).success(function (data) {
 				callback(data);
 			})
+		},
+		checkOut: function(callback) {
+			
 		}
 	}
 })

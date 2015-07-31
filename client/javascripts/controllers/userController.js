@@ -37,6 +37,10 @@ application.controller('userController', function ($scope, $timeout, $location, 
 		})
 	})
 
+	userFactory.showCartItems(function(data) {
+		$scope.cartItems = data.cart;
+	})
+
 	this.addToCart = function(itemID, quantity) {
 		userFactory.addToCart(itemID, quantity, function (cart) {
 			$scope.$emit("cart", {cart: cart});
