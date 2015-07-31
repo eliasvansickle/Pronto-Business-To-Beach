@@ -79,6 +79,9 @@ module.exports = function(app) {
 	app.get('/cart/show', function(req, res) {
 		userController.showCartItems(req, res);
 	})
+	app.post("/user/addToCart/:id", function (req, res) {
+		userController.addToCart(req, res);
+	})
 }
 
 

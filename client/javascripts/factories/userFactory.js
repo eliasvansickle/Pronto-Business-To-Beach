@@ -8,11 +8,15 @@ application.factory('userFactory', function ($http) {
 		},
 		visitMenu: function(businessID, callback) {
 			this.currentMenuID = businessID;
-			console.log("IN FACTORY", this.currentMenuID)
 			callback();
 		},
 		showCartItems: function(callback) {
 			$http.get('/cart/show').success(function(data) {
+				console.log(data);
+			})
+		},
+		addToCart: function(itemID, quantity, callback) {
+			$http.post("/user/addToCart/" + itemID, quantity).success(function (data) {
 				callback(data);
 			})
 		}

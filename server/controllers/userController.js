@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var Menu = mongoose.model("Menu");
+
 
 userController = {
 	createUser: function(req, res) {
@@ -75,6 +77,17 @@ userController = {
 	},
 	showCartItems: function(req, res) {
 		res.json(req.session);
+	},
+	addToCart: function(req, res) {
+		Menu.findOne({_id: req.params.id}, function (err, item) {
+			if (!req.session.cart) {
+				req.session.cart = [];
+			}
+			item.total_price = req.body.quantity * item.price;
+			item.quantity = req.body.quantity;
+			req.session.cart.push(item);
+			res.json(req.session.cart);
+		}).lean()
 	}
 
 }

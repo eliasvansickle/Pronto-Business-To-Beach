@@ -53,4 +53,12 @@ application.controller('mainController', function ($scope, $location, authentica
 		$location.path("/" + location);
 
 	}
+
+	$scope.$on("cart", function (events, args) {
+		self.cartQuantity = 0;
+		angular.forEach(args.cart, function (item) {
+			self.cartQuantity += item.quantity;
+			console.log(self.cartQuantity);
+		})
+	})
 })

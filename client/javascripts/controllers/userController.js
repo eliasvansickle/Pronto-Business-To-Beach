@@ -1,8 +1,6 @@
 application.controller('userController', function ($scope, $timeout, $location, userFactory, businessFactory) {
 	var self = this;
 
-	$("[data-toggle=popover]").popover();
-
 	userFactory.showBusinesses(function (businesses) {
 		self.businesses = [];
 		angular.forEach(businesses, function (business) {
@@ -14,14 +12,9 @@ application.controller('userController', function ($scope, $timeout, $location, 
 
 	var showItems = function() {
 		if (userFactory.currentMenuID != null) {
-			console.log(userFactory.currentMenuID)
-			console.log("working");
 			businessFactory.showItems(userFactory.currentMenuID, function (data) {
 				self.items = data.menu;
 			})
-		}
-		else {
-			console.log("not working");
 		}
 	}
 
@@ -33,6 +26,7 @@ application.controller('userController', function ($scope, $timeout, $location, 
 			$location.path("/menu");
 		})
 	}
+	
 	this.addToCartTemplate = {
 		templateUrl: "addToCart.html"
 	}
@@ -42,17 +36,9 @@ application.controller('userController', function ($scope, $timeout, $location, 
 			// $scope.cartItems = data.cart;
 		})
 	})
+	this.addToCart = function(itemID, quantity) {
+		userFactory.addToCart(itemID, quantity, function (cart) {
+			$scope.$emit("cart", {cart: cart});
+		})
+	}
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
