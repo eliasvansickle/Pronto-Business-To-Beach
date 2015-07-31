@@ -47,11 +47,10 @@ application.controller('mainController', function ($scope, $location, authentica
 
 	this.changeLocation = function(location) {
 		self.location = location;
-		if(location == 'checkout') {
-			$scope.$broadcast('checkout');
+		if(location == 'successful_order') {
+			$scope.$broadcast('successful_order');
 		}
 		$location.path("/" + location);
-
 	}
 
 	$scope.$on("cart", function (events, args) {

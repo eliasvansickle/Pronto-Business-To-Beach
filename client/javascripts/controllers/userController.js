@@ -30,12 +30,13 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	this.addToCartTemplate = {
 		templateUrl: "addToCart.html"
 	}
-	$scope.$on('checkout', function() {
-		userFactory.showCartItems(function(data) {
-			console.log('callback here to set scope', data);
-			// $scope.cartItems = data.cart;
+
+	$scope.$on('successful_order', function() {
+		userFactory.checkOut(function() {
+			console.log("fired");
 		})
 	})
+
 	this.addToCart = function(itemID, quantity) {
 		userFactory.addToCart(itemID, quantity, function (cart) {
 			$scope.$emit("cart", {cart: cart});
