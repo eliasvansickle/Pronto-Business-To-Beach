@@ -25,7 +25,6 @@ application.config(function($routeProvider) {
 		templateUrl: './partials/business_signup.html',
 		controller: 'authenticationController'
 	})
-	//////////////////////////////////////////////////////////////TEMPORARY BELOW///////////////////////////
 	.when('/user_dashboard', {
 		templateUrl: './partials/user_dashboard.html',
 		controller: 'userController',
@@ -87,8 +86,6 @@ application.config(function($routeProvider) {
 		controller: 'businessController',
 		controllerAs: 'biz'
 	})
-
-	//////////////////////////////////////////////////////////////TEMPORARY ABOVE///////////////////////////
 	.otherwise({
 		redirectTo: '/'
 	})

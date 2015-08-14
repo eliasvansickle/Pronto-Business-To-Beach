@@ -20,9 +20,6 @@ application.factory('userFactory', function ($http) {
 				callback(data);
 			})
 		},
-		checkOut: function(callback) {
-			
-		},
 		updateCart: function(cartItem, callback) {
 			$http.post('/cart/update/'+cartItem._id, cartItem).success(function() {
 				callback();
@@ -30,6 +27,11 @@ application.factory('userFactory', function ($http) {
 		},
 		deleteCartItem: function(cartItemId, callback) {
 			$http.delete('/cart/delete/'+cartItemId).success(function() {
+				callback();
+			})
+		},
+		checkOut: function(total_amount, callback) {
+			$http.post("/user/checkOut", total_amount).success(function() {
 				callback();
 			})
 		}

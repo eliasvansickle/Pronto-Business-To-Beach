@@ -30,19 +30,28 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	this.addToCartTemplate = {
 		templateUrl: "addToCart.html"
 	}
-
 	this.updateCartItemTemplate = {
 		templateUrl: 'updateCartItem.html'
 	}
 
+	// ==================================================================
+	// ============ AUTOMATICALLY RUN WHEN USER PLACES ORDER ============
+	// ==================================================================
 	$scope.$on('successful_order', function() {
-		userFactory.checkOut(function() {
-			console.log("fired");
+		userFactory.checkOut({total_amount: self.total_amount}, function() {
+
 		})
 	})
+	// ==================================================================
+	// ==================================================================
+	// ==================================================================
 
 	userFactory.showCartItems(function(data) {
 		$scope.cartItems = data.cart;
+		self.total_amount = 0;
+		angular.forEach($scope.cartItems, function (cartItem) {
+			self.total_amount += cartItem.total_price;
+		})
 	})
 
 	this.addToCart = function(itemID, quantity) {

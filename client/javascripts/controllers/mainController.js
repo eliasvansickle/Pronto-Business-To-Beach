@@ -6,9 +6,12 @@ application.controller('mainController', function ($scope, $location, authentica
 		authenticationFactory.checkSession(function(data) {
 			if (data.status == false) {
 				$location.path("/");
+				self.user = false;
+				self.business = false;
+				self.taskforce = false;
+				self.admin = false;
 			}
-			else
-			{
+			else {
 				$scope.$broadcast('currentClient', {data});
 				self.loggedIn = true;
 				if (data.type == "user") {
@@ -37,7 +40,7 @@ application.controller('mainController', function ($scope, $location, authentica
 		authenticationFactory.logOut(function() {
 			self.loggedIn = false;
 			self.location = null;
-			$location.path("/");
+			checkSession();
 		})
 	}
 
@@ -57,7 +60,6 @@ application.controller('mainController', function ($scope, $location, authentica
 		self.cartQuantity = 0;
 		angular.forEach(args.cart, function (item) {
 			self.cartQuantity += item.quantity;
-			console.log(self.cartQuantity);
 		})
 	})
 })

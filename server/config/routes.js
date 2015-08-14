@@ -88,6 +88,9 @@ module.exports = function(app) {
 	app.delete('/cart/delete/:id', function(req, res) {
 		userController.deleteCartItem(req, res);
 	})
+	app.post("/user/checkOut", function (req, res) {
+		userController.checkOut(req, res);
+	})
 }
 
 

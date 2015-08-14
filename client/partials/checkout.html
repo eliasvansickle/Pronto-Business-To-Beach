@@ -14,8 +14,14 @@
 					<td ng-bind='cartItem.menu_item'></td>
 					<td>${{cartItem.price}}</td>
 					<td ng-bind='cartItem.quantity'></td>
-					<td ng-bind='cartItem.total_price'></td>
+					<td ng-bind-template='${{ cartItem.quantity * cartItem.price }}'></td>
 					<td><p><a href popover-placement="right" popover-template="user.updateCartItemTemplate.templateUrl" popover-trigger="click">Update</a></p><p><a href ng-click='user.deleteCartItem(cartItem)'>Delete</a></p></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<!-- <td ng-bind-template="${{ user.total_amount }}"></td> -->
 				</tr>
 			</tbody>
 		</table>
