@@ -73,4 +73,31 @@ application.controller('userController', function ($scope, $timeout, $location, 
 			})
 		})
 	}
+	///////////////////////////////STRIPE/////////////////////////////////////////
+	var handler = StripeCheckout.configure({
+	    key: 'pk_test_IEWVlOCvUGfBtXWxxqGWU6Z1',
+	    // image: '/img/documentation/checkout/marketplace.png',
+	    token: function(token) {
+	      // Use the token to create the charge with a server-side script.
+	      // You can access the token ID with `token.id`
+	    }
+	  });
+
+	$('#customButton').on('click', function(e) {
+		// Open Checkout with further options
+		handler.open({
+			name: 'Pronto B2B',
+			description: $scope.cartItems.length + ' items',
+			amount: (self.total_amount * 100)
+		});
+		e.preventDefault();
+	});
+
+	// Close Checkout on page navigation
+	$(window).on('popstate', function() {
+		handler.close();
+	});
+///////////////////////////////STRIPE/////////////////////////////////////////
+
+
 })

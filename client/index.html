@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Pronto Delivery</title>
+	
+	<script src="https://checkout.stripe.com/checkout.js"></script>
 
 	<!-- >>>>>>>>>> ANGULARJS >>>>>>>>>> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
@@ -129,7 +131,7 @@
 							<li><a href ng-click="main.changeLocation('business_menu_table')">Menu</a></li>
 							<li><a href ng-click="main.changeLocation('business_current_orders')">Current Orders</a></li>
 							<li><a href ng-click='main.showBusinessProfile(); main.changeLocation("business_profile")'>Profile</a></li>
-							<li><a href ng-click='main.logOut()'>Log Off</a></li>
+							<li><a href ng-click='main.logOut()'>Log Out</a></li>
 						</ul>
 					</div>
 					<div ng-switch-when='business_profile'>
@@ -172,6 +174,22 @@
 		</div>
 	</nav>
 	<div ng-view></div>
+	<!-- <div class='stripe_test' ng-if="main.loggedIn && main.user">
+		<div ng-switch on="main.location">
+			<div ng-switch-when='checkout'>
+				<form method="POST">
+				  <script
+				    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+				    data-key="pk_test_IEWVlOCvUGfBtXWxxqGWU6Z1"
+				    data-image="/img/documentation/checkout/marketplace.png"
+				    data-name="Demo Site"
+				    data-description="2 widgets"
+				    data-amount="2000">
+				  </script>
+				</form>
+			</div>
+		</div>
+	</div> -->
 </body>
 
 </html>
