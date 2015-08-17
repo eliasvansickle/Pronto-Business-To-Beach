@@ -39,6 +39,7 @@ application.controller('authenticationController', function($scope, $location, a
 			}
 			else if(data.type == 'business') {
 				$scope.$emit("checkSession");
+				$scope.$emit("locationChange", {location: 'business_current_orders'})
 				$location.path('/business_current_orders');
 			}
 			else if (data.type == "taskforce") {

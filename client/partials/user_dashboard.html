@@ -8,30 +8,6 @@
 			</div>
 		</div>
 		<div class="container">
-			<div class="jumbotron biz">
-				<h1>Happy Bowls</h1>
-				<a href="#/menu">
-					<div class="happy_bowls"></div>
-				</a>
-			</div>
-			<div class="jumbotron biz">
-				<h1>Jonis</h1>
-				<a href="">
-					<div class="jonis"></div>
-				</a>
-			</div>
-			<div class="jumbotron biz">
-				<h1>Naturally Good</h1>
-				<a href="">
-					<div class="naturally_good"></div>
-				</a>
-			</div>
-
-			<div class="jumbotron biz_bottom"></div>
-		</div>
-
-		<h1>ANGULAR STUFF FROM THIS POINT ON</h1>
-		<div class="container">
 			<div class="jumbotron biz" ng-repeat="business in user.businesses | filter: filter_name">
 				<h1 ng-bind="business.business_name"></h1>
 				<a href ng-click="user.visitMenu(business._id)">

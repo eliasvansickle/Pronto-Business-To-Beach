@@ -6,9 +6,9 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class='nav navbar-nav navbar-right'>
-					<li><a href='#/'>Log Out (INCORPORATE SESSION HERE)</a></li>
-					<li><a href="#/admin_users">Admin Users</a></li>
 					<li><a href="#/admin_business">Admin Business</a></li>
+					<li><a href="#/admin_users">Admin Users</a></li>
+					<li><a href ng-click='main.logOut()'>Log Out</a></li>
 				</ul>
 			</div>
 		</div>
@@ -35,10 +35,10 @@
 				<tr ng-repeat='taskforce in taskforce_members | filter: filter_name | orderBy: "-created_at"'>
 					<td ng-bind='taskforce.first_name'></td>
 					<td ng-bind='taskforce.last_name'></td>
-					<td><a href="" ng-bind='taskforce.email'></a></td>
+					<td><a href ng-bind='taskforce.email'></a></td>
 					<td ng-bind='taskforce.cell_phone'></td>
 					<td ng-bind='taskforce.status'></td>
-					<td><p><a href="" ng-click='showTaskforceProfile(taskforce._id)'>Update</a></p><p><a href="" ng-click='deleteTaskforce(taskforce._id)'>Delete</a></p></td>
+					<td><p><a href ng-click='showTaskforceProfile(taskforce._id)'>Update</a></p><p><a href ng-click='deleteTaskforce(taskforce._id)'>Delete</a></p></td>
 				</tr>
 			</tbody>
 		</table>

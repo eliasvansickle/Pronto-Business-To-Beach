@@ -1,6 +1,7 @@
-application.controller('mainController', function ($scope, $location, authenticationFactory) {
+application.controller('mainController', function ($scope, $location, authenticationFactory, businessFactory) {
 	var self = this;
 	$scope.currentBiz = {};
+	this.currentBizId = null;
 
 	var checkSession = function() {
 		authenticationFactory.checkSession(function(data) {
@@ -19,6 +20,7 @@ application.controller('mainController', function ($scope, $location, authentica
 				}
 				if (data.type == "business") {
 					self.business = true;
+					this.currentBizId = data.client_id;
 				}
 				if (data.type == "taskforce") {
 					self.taskforce = true;
@@ -62,4 +64,19 @@ application.controller('mainController', function ($scope, $location, authentica
 			self.cartQuantity += item.quantity;
 		})
 	})
+
+	this.showBusinessProfile = function() {
+		businessFactory.showCurrentBusiness(currentBizId, function(data) {
+			$scope.currentBiz = data;
+			$location.path('/business_profile');
+		})
+	}
+
 })
+
+
+
+
+
+
+

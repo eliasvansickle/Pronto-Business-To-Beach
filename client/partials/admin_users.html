@@ -6,9 +6,9 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class='nav navbar-nav navbar-right'>
-					<li><a href ng-click='main.logOut()'>Log Out (INCORPORATE SESSION HERE)</a></li>
 					<li><a href="#/admin_business">Admin Business</a></li>
 					<li><a href="#/admin_taskforce">Admin Taskforce</a></li>
+					<li><a href ng-click='main.logOut()'>Log Out</a></li>
 				</ul>
 			</div>
 		</div>
@@ -34,11 +34,11 @@
 			<tbody>
 				<tr ng-repeat='user in users | filter: filter_name | orderBy: "-created_at"'>
 					<td ng-bind='user.name'></td>
-					<td><a href="" ng-bind='user.email'></a></td>
+					<td><a href ng-bind='user.email'></a></td>
 					<td ng-bind='user.cell_phone'></td>
 					<td ng-bind='user.type'></td>
 					<td ng-bind='user.created_at'></td>
-					<td><p><a href="" ng-click='showUserProfile(user._id)'>Update</a></p><p><a href="" ng-click='deleteUser(user._id)'>Delete</a></p></td>
+					<td><p><a href ng-click='showUserProfile(user._id)'>Update</a></p><p><a href ng-click='deleteUser(user._id)'>Delete</a></p></td>
 				</tr>				
 			</tbody>
 		</table>

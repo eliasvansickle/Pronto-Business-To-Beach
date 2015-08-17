@@ -61,13 +61,6 @@ application.controller('businessController', function ($timeout, $location, $sco
 			showItems();
 		})
 	}
-	this.showBusinessProfile = function(currentClient) {
-		businessFactory.showCurrentBusiness(currentClient.client_id, function(data) {
-			
-			$scope.$parent.currentBiz = data;
-			$location.path('/business_profile');
-		})
-	}
 	this.updateBusinessProfile = function(business) {
 		console.log(business);
 		businessFactory.updateCurrentBusiness(business, function(data) {
