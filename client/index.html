@@ -67,7 +67,6 @@
 				<ul class='nav navbar-nav navbar-right'>
 					<li><a href='#/login'>Log In</a></li>
 					<li><a href='#/signup'>Sign Up</a></li>
-					<li><a href="#/admin_users">Admin</a></li>
 				</ul>
 			</div>
 			<!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
@@ -138,6 +137,32 @@
 							<li><a href ng-click="main.changeLocation('business_menu_table')">Menu</a></li>
 							<li><a href ng-click="main.changeLocation('business_current_orders')">Current Orders</a></li>
 							<li><a href ng-click="main.changeLocation('business_order_history')">Order History</a></li>
+							<li><a href ng-click='main.logOut()'>Log Out</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="navbar-collapse collapse" ng-if="main.loggedIn && main.admin">
+				<div ng-switch on='main.location'>
+					<div ng-switch-when='admin_users'>
+						<ul class='nav navbar-nav navbar-right'>
+							<li><a href ng-click="main.changeLocation('admin_business')">Business</a></li>
+							<li><a href ng-click="main.changeLocation('admin_taskforce')">Taskforce</a></li>
+							<li><a href ng-click='main.logOut()'>Log Out</a></li>
+						</ul>
+					</div>
+					<div ng-switch-when='admin_business'>
+						<ul class='nav navbar-nav navbar-right'>
+							<li><a href ng-click="main.changeLocation('admin_users')">Users</a></li>
+							<li><a href ng-click="main.changeLocation('admin_taskforce')">Taskforce</a></li>
+							<li><a href ng-click='main.logOut()'>Log Out</a></li>
+						</ul>
+					</div>
+					<div ng-switch-when='admin_taskforce'>
+						<ul class='nav navbar-nav navbar-right'>
+							<li><a href ng-click="main.changeLocation('admin_users')">Users</a></li>
+							<li><a href ng-click="main.changeLocation('admin_business')">Business</a></li>
 							<li><a href ng-click='main.logOut()'>Log Out</a></li>
 						</ul>
 					</div>

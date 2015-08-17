@@ -31,6 +31,7 @@ application.controller('authenticationController', function($scope, $location, a
 		authenticationFactory.login(client, function(data) {
 			if(data.type == 'admin') {
 				$scope.$emit("checkSession");
+				$scope.$emit('locationChange', {location: 'admin_users'});
 				$location.path('/admin_users');
 			}
 			else if(data.type == 'user') {
