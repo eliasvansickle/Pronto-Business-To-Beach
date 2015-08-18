@@ -57,19 +57,29 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	this.addToCart = function(itemID, quantity) {
 		userFactory.addToCart(itemID, quantity, function (cart) {
 			$scope.$emit("cart", {cart: cart});
+			angular.forEach(cart, function (cartItem) {
+				self.total_amount += cartItem.price;
+			})
 		})
 	}
 	this.updateCart = function(cartItem) {
 		userFactory.updateCart(cartItem, function() {
 			userFactory.showCartItems(function(data) {
 				$scope.cartItems = data.cart;
+				angular.forEach(data.cart, function (cartItem) {
+					self.total_amount += cartItem.total_price;
+				})
 			})
 		})
 	}
 	this.deleteCartItem = function(cartItem) {
+		self.total_amount = 0;
 		userFactory.deleteCartItem(cartItem._id, function() {
 			userFactory.showCartItems(function(data) {
 				$scope.cartItems = data.cart;
+				angular.forEach(data.cart, function (cartItem) {
+					self.total_amount += cartItem.total_price;
+				})
 			})
 		})
 	}
@@ -104,64 +114,68 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	});
 
 ///////////////////////////////GOOGLE MAPS/////////////////////////////////////////
-	$('#getDeliveryQuote').on('click', function() {
-		function initialize() {
+	$(document).ready(function() {
 
-		  var map = new google.maps.Map(document.getElementById('map'), {
-		    center: {lat: 40.985976, lng: -72.172432},
-		    zoom: 11
-		  });
-		  var input = /** @type {!HTMLInputElement} */(
-		      document.getElementById('autocompleteLocation'));
+		$('#getDeliveryQuote').on('click', function() {
+			function initialize() {
 
-		  var autocomplete = new google.maps.places.Autocomplete(input);
-		  autocomplete.bindTo('bounds', map);
+			  var map = new google.maps.Map(document.getElementById('map'), {
+			    center: {lat: 40.985976, lng: -72.172432},
+			    zoom: 11
+			  });
+			  var input = /** @type {!HTMLInputElement} */(
+			      document.getElementById('autocompleteLocation'));
 
-		  var infowindow = new google.maps.InfoWindow();
-		  var marker = new google.maps.Marker({
-		    map: map,
-		    anchorPoint: new google.maps.Point(0, -29)
-		  });
+			  var autocomplete = new google.maps.places.Autocomplete(input);
+			  autocomplete.bindTo('bounds', map);
 
-		  autocomplete.addListener('place_changed', function() {
-		    infowindow.close();
-		    marker.setVisible(false);
-		    var place = autocomplete.getPlace();
-		    if (!place.geometry) {
-		      window.alert("Autocomplete's returned place contains no geometry");
-		      return;
-		    }
+			  var infowindow = new google.maps.InfoWindow();
+			  var marker = new google.maps.Marker({
+			    map: map,
+			    anchorPoint: new google.maps.Point(0, -29)
+			  });
 
-		    // If the place has a geometry, then present it on a map.
-		    if (place.geometry.viewport) {
-		      map.fitBounds(place.geometry.viewport);
-		    } else {
-		      map.setCenter(place.geometry.location);
-		      map.setZoom(17);  // Why 17? Because it looks good.
-		    }
-		    marker.setIcon(/** @type {google.maps.Icon} */({
-		      url: place.icon,
-		      size: new google.maps.Size(71, 71),
-		      origin: new google.maps.Point(0, 0),
-		      anchor: new google.maps.Point(17, 34),
-		      scaledSize: new google.maps.Size(35, 35)
-		    }));
-		    marker.setPosition(place.geometry.location);
-		    marker.setVisible(true);
+			  autocomplete.addListener('place_changed', function() {
+			    infowindow.close();
+			    marker.setVisible(false);
+			    var place = autocomplete.getPlace();
+			    if (!place.geometry) {
+			      window.alert("Autocomplete's returned place contains no geometry");
+			      return;
+			    }
 
-		    var address = '';
-		    if (place.address_components) {
-		      address = [
-		        (place.address_components[0] && place.address_components[0].short_name || ''),
-		        (place.address_components[1] && place.address_components[1].short_name || ''),
-		        (place.address_components[2] && place.address_components[2].short_name || '')
-		      ].join(' ');
-		    }
+			    // If the place has a geometry, then present it on a map.
+			    if (place.geometry.viewport) {
+			      map.fitBounds(place.geometry.viewport);
+			    } else {
+			      map.setCenter(place.geometry.location);
+			      map.setZoom(17);  // Why 17? Because it looks good.
+			    }
+			    marker.setIcon(/** @type {google.maps.Icon} */({
+			      url: place.icon,
+			      size: new google.maps.Size(71, 71),
+			      origin: new google.maps.Point(0, 0),
+			      anchor: new google.maps.Point(17, 34),
+			      scaledSize: new google.maps.Size(35, 35)
+			    }));
+			    marker.setPosition(place.geometry.location);
+			    marker.setVisible(true);
 
-		    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-		    infowindow.open(map, marker);
-		  });
-		}
-		initialize();
+			    var address = '';
+			    if (place.address_components) {
+			      address = [
+			        (place.address_components[0] && place.address_components[0].short_name || ''),
+			        (place.address_components[1] && place.address_components[1].short_name || ''),
+			        (place.address_components[2] && place.address_components[2].short_name || '')
+			      ].join(' ');
+			    }
+
+			    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+			    infowindow.open(map, marker);
+			  });
+			}
+			initialize();
+		})
 	})
+
 })
