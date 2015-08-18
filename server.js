@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var nodemailer = require('nodemailer');
+var stripe = require("stripe")("sk_test_uhaOwUSTk0V3lzJF0IvkcBOJ");
 var app = express();
 
 app.use(bodyParser.json());

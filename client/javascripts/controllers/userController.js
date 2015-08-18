@@ -78,6 +78,11 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	    key: 'pk_test_IEWVlOCvUGfBtXWxxqGWU6Z1',
 	    // image: '/img/documentation/checkout/marketplace.png',
 	    token: function(token) {
+	    	var amount = self.total_amount * 100;
+	    	data = {token: token, amount: amount};
+	    	userFactory.createCharge(data, function() {
+	    		console.log('callback here');
+	    	})
 	      // Use the token to create the charge with a server-side script.
 	      // You can access the token ID with `token.id`
 	    }
@@ -86,7 +91,7 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	$('#customButton').on('click', function(e) {
 		// Open Checkout with further options
 		handler.open({
-			name: 'Pronto B2B',
+			name: 'Pronto Delivery',
 			description: $scope.cartItems.length + ' items',
 			amount: (self.total_amount * 100)
 		});

@@ -34,6 +34,11 @@ application.factory('userFactory', function ($http) {
 			$http.post("/user/checkOut", total_amount).success(function() {
 				callback();
 			})
+		},
+		createCharge: function(data, callback) {
+			$http.post('/charge', data).success(function() {
+				callback();
+			})
 		}
 	}
 })

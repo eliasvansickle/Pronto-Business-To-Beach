@@ -91,6 +91,9 @@ module.exports = function(app) {
 	app.post("/user/checkOut", function (req, res) {
 		userController.checkOut(req, res);
 	})
+	app.post('/charge', function(req,res) {
+		userController.charge(req, res);
+	})
 }
 
 

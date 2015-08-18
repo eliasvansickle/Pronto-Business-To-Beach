@@ -5,6 +5,9 @@ var Menu = mongoose.model("Menu");
 var Business = mongoose.model("Business");
 var Order = mongoose.model("Order");
 
+// Set your secret key: remember to change this to your live secret key in production
+// See your keys here https://dashboard.stripe.com/account/apikeys
+var stripe = require("stripe")("sk_test_uhaOwUSTk0V3lzJF0IvkcBOJ");
 
 userController = {
 	createUser: function(req, res) {
@@ -190,6 +193,25 @@ userController = {
 				}
 			}
 		}
+	},
+	charge: function(req, res) {
+		var stripeToken = req.body.token.id;
+		var total_amount = req.body.amount;
+
+		var charge = stripe.charges.create({
+			amount: total_amount,
+			currency: "usd",
+			source: stripeToken,
+			description: "Example charge"
+		}, function(err, charge) {
+			if (err && err.type === 'StripeCardError') {
+			    console.log('STRIPE CARD ERROR')
+			}
+			else {
+				console.log('successful charge', charge);
+				res.json('done');
+			}
+		});
 	}	
 }
 
