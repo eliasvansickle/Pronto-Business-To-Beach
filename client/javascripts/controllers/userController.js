@@ -46,43 +46,42 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	// ==================================================================
 	// ==================================================================
 
+
+	function updateTotal() {
+		self.total_amount = 0;
+		for (i in $scope.cartItems) {
+			self.total_amount += $scope.cartItems[i].price * $scope.cartItems[i].quantity;
+		}
+	}
+
 	userFactory.showCartItems(function(data) {
 		$scope.cartItems = data.cart;
-		self.total_amount = 0;
-		angular.forEach($scope.cartItems, function (cartItem) {
-			self.total_amount += cartItem.total_price;
-		})
+		updateTotal();
 	})
 
 	this.addToCart = function(itemID, quantity) {
 		userFactory.addToCart(itemID, quantity, function (cart) {
 			$scope.$emit("cart", {cart: cart});
-			angular.forEach(cart, function (cartItem) {
-				self.total_amount += cartItem.price;
-			})
 		})
 	}
 	this.updateCart = function(cartItem) {
 		userFactory.updateCart(cartItem, function() {
 			userFactory.showCartItems(function(data) {
 				$scope.cartItems = data.cart;
-				angular.forEach(data.cart, function (cartItem) {
-					self.total_amount += cartItem.total_price;
-				})
+				updateTotal();
 			})
 		})
 	}
 	this.deleteCartItem = function(cartItem) {
-		self.total_amount = 0;
 		userFactory.deleteCartItem(cartItem._id, function() {
 			userFactory.showCartItems(function(data) {
 				$scope.cartItems = data.cart;
-				angular.forEach(data.cart, function (cartItem) {
-					self.total_amount += cartItem.total_price;
-				})
+				updateTotal();
 			})
 		})
 	}
+
+
 	///////////////////////////////STRIPE/////////////////////////////////////////
 	var handler = StripeCheckout.configure({
 	    key: 'pk_test_IEWVlOCvUGfBtXWxxqGWU6Z1',
@@ -112,6 +111,9 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	$(window).on('popstate', function() {
 		handler.close();
 	});
+
+
+
 
 ///////////////////////////////GOOGLE MAPS/////////////////////////////////////////
 	$(document).ready(function() {
