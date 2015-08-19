@@ -41,8 +41,8 @@
 			</div>
 			<div class="modal-body">
 				<form>
-					<input type="hidden" ng-value="cartItems[0]._business">
 					<div class="form-group">
+						<input name='business_id' id='PickUpBusinessId' type="hidden" value="{{cartItems[0]._business}}">
 						<label for="drop_off_address" class="control-label">Drop Off Address:</label>
 						<input id='autocompleteLocation' type="text" class="form-control" name="drop_off_address">
 					</div>
@@ -51,7 +51,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" ng-click="">Submit</button>
+				<button type="button" class="btn btn-primary" ng-click="user.getDeliveryQuote()">Submit</button>
 			</div>
 		</div>
 	</div>

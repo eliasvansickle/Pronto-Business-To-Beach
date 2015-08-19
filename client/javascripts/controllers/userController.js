@@ -80,7 +80,6 @@ application.controller('userController', function ($scope, $timeout, $location, 
 				else {
 					userFactory.addToCart(itemID, quantity, function (cart) {
 						$scope.$emit("cart", {cart: cart});
-						console.log('cart', cart);
 					})
 				}
 		}	
@@ -200,5 +199,12 @@ application.controller('userController', function ($scope, $timeout, $location, 
 			initialize();
 		})
 	})
+
+
+	this.getDeliveryQuote = function() {
+		console.log($('#autocompleteLocation').val());
+		console.log($('#PickUpBusinessId').val());
+
+	}
 
 })
