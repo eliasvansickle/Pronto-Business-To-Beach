@@ -60,9 +60,11 @@ application.controller('mainController', function ($scope, $location, authentica
 
 	$scope.$on("cart", function (events, args) {
 		self.cartQuantity = 0;
-		angular.forEach(args.cart, function (item) {
-			self.cartQuantity += item.quantity;
-		})
+		if(args.cart) {
+			angular.forEach(args.cart, function (item) {
+				self.cartQuantity += item.quantity;
+			})
+		}
 	})
 
 	this.showBusinessProfile = function() {

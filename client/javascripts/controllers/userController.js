@@ -52,6 +52,9 @@ application.controller('userController', function ($scope, $timeout, $location, 
 		for (i in $scope.cartItems) {
 			self.total_amount += $scope.cartItems[i].price * $scope.cartItems[i].quantity;
 		}
+		if($scope.cartItems) {
+			$scope.$emit("cart", {cart: $scope.cartItems});
+		}
 	}
 
 	userFactory.showCartItems(function(data) {
