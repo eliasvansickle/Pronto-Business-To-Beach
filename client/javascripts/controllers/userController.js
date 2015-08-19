@@ -68,7 +68,6 @@ application.controller('userController', function ($scope, $timeout, $location, 
 		if($scope.cartItems == undefined || $scope.cartItems.length == 0) {
 			userFactory.addToCart(itemID, quantity, function (cart) {
 				$scope.$emit("cart", {cart: cart});
-				console.log('cart', cart);
 			})
 		}
 		else {
@@ -202,9 +201,10 @@ application.controller('userController', function ($scope, $timeout, $location, 
 
 
 	this.getDeliveryQuote = function() {
-		console.log($('#autocompleteLocation').val());
-		console.log($('#PickUpBusinessId').val());
-
+		businessIdForPickUp = $('#autocompleteLocation').val();
+		dropOffLocation = $('#PickUpBusinessId').val();
+		userFactory.getDeliveryQuote(businessIdForPickUp, dropOffLocation, function() {
+			console.log('callback here');
+		}) 
 	}
-
 })

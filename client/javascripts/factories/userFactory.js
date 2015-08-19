@@ -39,6 +39,15 @@ application.factory('userFactory', function ($http) {
 			$http.post('/charge', data).success(function() {
 				callback();
 			})
+		},
+		getDeliveryQuote: function(dropOffLocation, businessIdForPickUp, callback) {
+			var data = {
+				businessIdForPickUp: businessIdForPickUp,
+				dropOffLocation: dropOffLocation
+			};
+			$http.post('/user/deliveryQuote', data).success(function() {
+				callback();
+			})
 		}
 	}
 })

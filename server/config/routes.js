@@ -94,6 +94,9 @@ module.exports = function(app) {
 	app.post('/charge', function(req,res) {
 		userController.charge(req, res);
 	})
+	app.post('/user/deliveryQuote', function(req, res) {
+		userController.getDeliveryQuote(req, res);
+	})
 }
 
 

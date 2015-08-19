@@ -222,7 +222,29 @@ userController = {
 				res.json('done');
 			}
 		});
+	},
+	getDeliveryQuote: function(req, res) {
+		console.log('req.body', req.body);
+		
+		res.json('done');
+
 	}	
 }
 
 module.exports = userController;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

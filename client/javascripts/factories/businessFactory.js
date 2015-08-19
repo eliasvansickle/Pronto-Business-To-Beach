@@ -31,6 +31,6 @@ application.factory('businessFactory', function ($http) {
 			$http.post('/business/profile/update/'+business._id, business).success(function(data) {
 				callback(data);
 			})
-		}
+		} 
 	}
 })
