@@ -89,6 +89,16 @@ userController = {
 			if (!req.session.cart) {
 				req.session.cart = [];
 			}
+			if(req.session.cart) {
+				for (i in req.session.cart) {
+					if(req.session.cart[i]._id == item._id) {
+						req.session.cart[i].quantity += req.body.quantity;
+						req.session.cart[i].total_price += req.body.quantity * item.price;
+						res.json(req.session.cart);
+						break;
+					}
+				}
+			}
 			item.total_price = req.body.quantity * item.price;
 			item.quantity = req.body.quantity;
 			req.session.cart.push(item);

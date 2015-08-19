@@ -68,6 +68,7 @@ application.controller('userController', function ($scope, $timeout, $location, 
 		if($scope.cartItems == undefined || $scope.cartItems.length == 0) {
 			userFactory.addToCart(itemID, quantity, function (cart) {
 				$scope.$emit("cart", {cart: cart});
+				console.log('cart', cart);
 			})
 		}
 		else {
@@ -79,6 +80,7 @@ application.controller('userController', function ($scope, $timeout, $location, 
 				else {
 					userFactory.addToCart(itemID, quantity, function (cart) {
 						$scope.$emit("cart", {cart: cart});
+						console.log('cart', cart);
 					})
 				}
 		}	
