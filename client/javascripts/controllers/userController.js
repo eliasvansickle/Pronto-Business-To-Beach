@@ -14,6 +14,7 @@ application.controller('userController', function ($scope, $timeout, $location, 
 		if (userFactory.currentMenuID != null) {
 			businessFactory.showItems(userFactory.currentMenuID, function (data) {
 				self.items = data.menu;
+				// console.log('data from show items function', data);
 			})
 		}
 	}
@@ -62,10 +63,25 @@ application.controller('userController', function ($scope, $timeout, $location, 
 		updateTotal();
 	})
 
-	this.addToCart = function(itemID, quantity) {
-		userFactory.addToCart(itemID, quantity, function (cart) {
-			$scope.$emit("cart", {cart: cart});
-		})
+	this.addToCart = function(itemID, businessID, quantity) {
+
+		if($scope.cartItems == undefined || $scope.cartItems.length == 0) {
+			userFactory.addToCart(itemID, quantity, function (cart) {
+				$scope.$emit("cart", {cart: cart});
+			})
+		}
+		else {
+			var prevBusinessID = $scope.cartItems[0]._business;
+
+				if(businessID != prevBusinessID) {
+					$scope.addToCartError = 'Unfortunately for delivery purposes, items may only be added from one business';
+				}
+				else {
+					userFactory.addToCart(itemID, quantity, function (cart) {
+						$scope.$emit("cart", {cart: cart});
+					})
+				}
+		}	
 	}
 	this.updateCart = function(cartItem) {
 		userFactory.updateCart(cartItem, function() {

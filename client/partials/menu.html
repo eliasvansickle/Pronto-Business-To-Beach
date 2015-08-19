@@ -1,5 +1,6 @@
 <div class="menu_page">
 	<div class="menu container">
+		<div class="error" ng-bind='addToCartError'></div>
 		<table class='table'>
 			<thead>
 				<th>Item</th>
@@ -26,6 +27,6 @@
 		<input type="number" ng-model="itemCart.quantity" class="form-control">
 		<label>Total: ${{ item.price * itemCart.quantity || 0}}</label>
 		<br>
-		<button type="submit" class="btn btn-default" ng-click="user.addToCart(item._id, itemCart)">Add</button>
+		<button type="submit" class="btn btn-default" ng-click="user.addToCart(item._id, item._business, itemCart)">Add</button>
 	</div>
 </script>
