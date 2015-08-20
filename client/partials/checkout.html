@@ -27,7 +27,7 @@
 			</tbody>
 		</table>
 		<a href ng-click="main.changeLocation('user_dashboard')" class='btn btn-default'>Continue Shopping</a>
-		<a href ng-click="main.changeLocation('successful_order')" id='customButton' class='btn btn-default place_order'>Place Order</a>
+		<!-- <a href ng-click="main.changeLocation('successful_order')" id='customButton' class='btn btn-default place_order'>Place Order</a> -->
 		<a href class="btn btn-primary getDeliveryQuote" data-toggle="modal" data-target='#getDeliveryQuote'>Get Delivery Quote</a>
 	</div>
 </div>
@@ -52,6 +52,25 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="button" class="btn btn-primary" ng-click="user.getDeliveryQuote()">Submit</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="DeliveryQuote" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Delivery Quote</h4>
+			</div>
+			<div class="modal-body">
+				<h2 ng-bind-template="Delivery Fee: {{delivery_fee}}"></h2><br>
+				<h2 ng-bind-template="Pronto Premium: {{pronto_premium}}"></h2>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<a href ng-click="main.changeLocation('successful_order')" class='btn btn-default place_order'>Place Order</a>
 			</div>
 		</div>
 	</div>
