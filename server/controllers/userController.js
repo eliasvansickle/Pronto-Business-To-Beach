@@ -13,6 +13,9 @@ var moment = require('moment');
 var stripe = require("stripe")("sk_test_uhaOwUSTk0V3lzJF0IvkcBOJ");
 
 userController = {
+	pick_up_address: null,
+	drop_off_address: null,
+	quote_id: null,
 	createUser: function(req, res) {
 		user = new User({
 			type: 'user',
@@ -221,7 +224,7 @@ userController = {
 			    console.log('STRIPE CARD ERROR')
 			}
 			else {
-				console.log('successful charge', charge);
+				// console.log('successful charge', charge);
 				res.json('done');
 			}
 		});
@@ -231,6 +234,8 @@ userController = {
 		var delivery;
 		var pick_up_address;
 		var drop_off_address = req.body.dropOffLocation;
+		this.drop_off_address = drop_off_address;
+		var self = this;
 
 
 		Business.findOne({_id: req.body.businessIdForPickUp}, function(err, business) {
@@ -239,6 +244,7 @@ userController = {
 			}
 			else {
 				pick_up_address = (business.street_address + ", " + business.city + ", " + business.state + " " + business.zip_code);
+				self.pick_up_address = pick_up_address;
 				getQuote();
 			}
 		})
@@ -255,10 +261,71 @@ userController = {
 					console.log('Error', err);
 				}
 				else {
+					self.quote_id = quote.body.id;
 					res.json(quote.body);
 				}
 			})
-		}		
+		}	
+	},
+	createDelivery: function(req, res) {
+		var business_name;
+		var business_phone_number;
+		var user_phone_number;
+		var user_name = req.session.name;
+		var cart = req.session.cart;
+		var delivery_description = [];
+		var self = this;
+		for(i in cart) {
+			delivery_description.push(cart[i].menu_item);
+		}
+		delivery_description = delivery_description.join(', ');
+
+
+		Business.findOne({_id: cart[0]._business}, function(err, business) {
+			business_name = business.business_name;
+			business_phone_number = formatPhoneNumber(business.phone);
+		})
+
+		User.findOne({_id: req.session._id}, function(err, user) {
+			user_phone_number = formatPhoneNumber(user.cell_phone);
+			initializeDelivery();
+		})
+
+		function formatPhoneNumber(num) {
+			num = num.toString();
+			arr = [];
+			arr.push(num.slice(0,3));
+			arr.push('-');
+			arr.push(num.slice(3,6));
+			arr.push('-');
+			arr.push(num.slice(6,10));
+			str = arr.join("");
+			str = str.valueOf();
+			return str;
+		}
+
+		function initializeDelivery() {
+
+			var delivery = {
+					manifest: delivery_description,
+					pickup_name: business_name,
+					pickup_address: self.pick_up_address,
+					pickup_phone_number: business_phone_number,
+					pickup_business_name: business_name,
+					pickup_notes: "Optional note",
+					dropoff_name: user_name,
+					dropoff_address: self.drop_off_address,
+					dropoff_phone_number: user_phone_number,
+					dropoff_business_name: "Optional Dropoff Business Name, Inc.",
+					dropoff_notes: "Optional note to ring the bell",
+					quote_id: self.quote_id
+				};
+				console.log(delivery);
+
+			postmates.new(delivery, function(err, delivery) {
+				res.json('delivery', delivery.body);
+			});
+		}
 	}	
 }
 

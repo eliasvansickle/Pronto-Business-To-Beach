@@ -27,8 +27,7 @@
 			</tbody>
 		</table>
 		<a href ng-click="main.changeLocation('user_dashboard')" class='btn btn-default'>Continue Shopping</a>
-		<!-- <a href ng-click="main.changeLocation('successful_order')" id='customButton' class='btn btn-default place_order'>Place Order</a> -->
-		<a href class="btn btn-primary getDeliveryQuote" data-toggle="modal" data-target='#getDeliveryQuote'>Get Delivery Quote</a>
+		<a href class="btn btn-primary getDeliveryQuote" data-toggle="modal" data-target='#getDeliveryQuote'>Place Order</a>
 	</div>
 </div>
 
@@ -50,8 +49,8 @@
 				<div id='map'></div>
 			</div>
 			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" ng-click="user.getDeliveryQuote()">Next</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" ng-click="user.getDeliveryQuote()">Submit</button>
 			</div>
 		</div>
 	</div>
@@ -69,8 +68,9 @@
 				<h2 ng-bind-template="Pronto Premium: {{pronto_premium}}"></h2>
 			</div>
 			<div class="modal-footer">
+				<a href ng-click="main.changeLocation('successful_order')" class='btn btn-primary place_order'>Submit Order</a>
+				<button type='button' id='backToAddressInput' class='btn btn-default'>Back</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<a href ng-click="main.changeLocation('successful_order')" class='btn btn-default place_order'>Place Order</a>
 			</div>
 		</div>
 	</div>

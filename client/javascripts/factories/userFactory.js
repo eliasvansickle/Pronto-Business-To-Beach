@@ -37,6 +37,8 @@ application.factory('userFactory', function ($http) {
 		},
 		createCharge: function(data, callback) {
 			$http.post('/charge', data).success(function() {
+				console.log('charged successfully');
+				createDelivery();
 				callback();
 			})
 		},
@@ -50,4 +52,25 @@ application.factory('userFactory', function ($http) {
 			})
 		}
 	}
+		function createDelivery() {
+			console.log('about to create delivery');
+			$http.post('/user/createDelivery').success(function(data) {
+				console.log('data from delivery', data);
+			})
+		}
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

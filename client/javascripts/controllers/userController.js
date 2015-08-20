@@ -39,11 +39,14 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	// ============ AUTOMATICALLY RUN WHEN USER PLACES ORDER ============
 	// ==================================================================
 	$scope.$on('successful_order', function() {
+
 		$('#DeliveryQuote').modal('toggle');
+
 		var delivery_fee = Number($scope.delivery_fee.replace(/[^0-9\.]+/g,""));
 		var pronto_premium = Number($scope.pronto_premium.replace(/[^0-9\.]+/g,""));
 		self.total_amount += delivery_fee;
 		self.total_amount += pronto_premium;
+
 		stripeCharge();
 		userFactory.checkOut({total_amount: self.total_amount}, function() {
 
@@ -204,10 +207,18 @@ application.controller('userController', function ($scope, $timeout, $location, 
 		})
 	})
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+		$('#backToAddressInput').on('click', function() {
+			$('#DeliveryQuote').modal('toggle');
+			$('#getDeliveryQuote').modal('toggle');
+
+		})
+
 
 	this.getDeliveryQuote = function() {
 		businessIdForPickUp = $('#autocompleteLocation').val();
 		dropOffLocation = $('#PickUpBusinessId').val();
+
 		userFactory.getDeliveryQuote(businessIdForPickUp, dropOffLocation, function(data) {
 
 			$('#getDeliveryQuote').modal('toggle');
