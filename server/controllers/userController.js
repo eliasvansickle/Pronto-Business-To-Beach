@@ -4,6 +4,8 @@ var User = mongoose.model('User');
 var Menu = mongoose.model("Menu");
 var Business = mongoose.model("Business");
 var Order = mongoose.model("Order");
+var Postmates = require('postmates');
+var postmates = new Postmates('cus_KPvP3A7DsuwQqV', 'b27eba32-b529-433c-b852-a4b1df2e04ec');
 
 // Set your secret key: remember to change this to your live secret key in production
 // See your keys here https://dashboard.stripe.com/account/apikeys
@@ -224,10 +226,38 @@ userController = {
 		});
 	},
 	getDeliveryQuote: function(req, res) {
-		console.log('req.body', req.body);
-		
-		res.json('done');
+		var business_zip;
+		var delivery;
+		var pick_up_address;
+		var drop_off_address = req.body.dropOffLocation;
 
+
+		Business.findOne({_id: req.body.businessIdForPickUp}, function(err, business) {
+			if(err) {
+				console.log('unable to find business');
+			}
+			else {
+				pick_up_address = (business.street_address + ", " + business.city + ", " + business.state + " " + business.zip_code);
+				getQuote();
+			}
+		})
+
+		function getQuote() {
+
+			delivery = {
+				pickup_address: pick_up_address,
+				dropoff_address: drop_off_address
+			};
+
+			postmates.quote(delivery, function(err, quote) {
+				if(err) {
+					console.log('Error', err);
+				}
+				else {
+					res.json(quote.body);
+				}
+			})
+		}		
 	}	
 }
 

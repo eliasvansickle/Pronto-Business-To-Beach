@@ -45,8 +45,8 @@ application.factory('userFactory', function ($http) {
 				businessIdForPickUp: businessIdForPickUp,
 				dropOffLocation: dropOffLocation
 			};
-			$http.post('/user/deliveryQuote', data).success(function() {
-				callback();
+			$http.post('/user/deliveryQuote', data).success(function(data) {
+				callback(data);
 			})
 		}
 	}

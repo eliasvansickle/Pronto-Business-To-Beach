@@ -203,8 +203,8 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	this.getDeliveryQuote = function() {
 		businessIdForPickUp = $('#autocompleteLocation').val();
 		dropOffLocation = $('#PickUpBusinessId').val();
-		userFactory.getDeliveryQuote(businessIdForPickUp, dropOffLocation, function() {
-			console.log('callback here');
+		userFactory.getDeliveryQuote(businessIdForPickUp, dropOffLocation, function(data) {
+			console.log('data', data);
 		}) 
 	}
 })
