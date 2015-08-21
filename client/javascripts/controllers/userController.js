@@ -1,5 +1,7 @@
 application.controller('userController', function ($scope, $timeout, $location, userFactory, businessFactory) {
 	var self = this;
+	this.cartCount = false;
+
 
 	userFactory.showBusinesses(function (businesses) {
 		self.businesses = [];
@@ -62,8 +64,16 @@ application.controller('userController', function ($scope, $timeout, $location, 
 		for (i in $scope.cartItems) {
 			self.total_amount += $scope.cartItems[i].price * $scope.cartItems[i].quantity;
 		}
-		if($scope.cartItems) {
-			$scope.$emit("cart", {cart: $scope.cartItems});
+		$scope.$emit("cart", {cart: $scope.cartItems});
+
+
+		if($scope.cartItems != undefined) {
+			if($scope.cartItems.length > 0) {
+				self.cartCount = true;
+			}
+		}
+		if($scope.cartItems == undefined || $scope.cartItems.length == 0 || self.total_amount == 0) {
+			self.cartCount = false;
 		}
 	}
 

@@ -58,6 +58,8 @@ application.controller('mainController', function ($scope, $location, authentica
 		$location.path("/" + location);
 	}
 
+
+
 	$scope.$on("cart", function (events, args) {
 		self.cartQuantity = 0;
 		if(args.cart) {
