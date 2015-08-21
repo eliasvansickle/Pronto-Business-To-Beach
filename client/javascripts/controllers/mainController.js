@@ -52,9 +52,6 @@ application.controller('mainController', function ($scope, $location, authentica
 
 	this.changeLocation = function(location) {
 		self.location = location;
-		if(location == 'successful_order') {
-			$scope.$broadcast('successful_order');
-		}
 		$location.path("/" + location);
 	}
 

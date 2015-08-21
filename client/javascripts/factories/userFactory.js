@@ -39,7 +39,13 @@ application.factory('userFactory', function ($http) {
 			$http.post('/charge', data).success(function() {
 				console.log('charged successfully');
 				createDelivery();
-				callback();
+				function createDelivery() {
+					console.log('about to create delivery');
+					$http.post('/user/createDelivery').success(function(data) {
+						console.log('data from delivery', data);
+						callback();
+					})
+				}
 			})
 		},
 		getDeliveryQuote: function(dropOffLocation, businessIdForPickUp, callback) {
@@ -52,12 +58,6 @@ application.factory('userFactory', function ($http) {
 			})
 		}
 	}
-		function createDelivery() {
-			console.log('about to create delivery');
-			$http.post('/user/createDelivery').success(function(data) {
-				console.log('data from delivery', data);
-			})
-		}
 })
 
 

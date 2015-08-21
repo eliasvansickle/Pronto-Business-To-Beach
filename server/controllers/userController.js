@@ -323,6 +323,7 @@ userController = {
 				console.log(delivery);
 
 			postmates.new(delivery, function(err, delivery) {
+				req.session.cart = [];
 				res.json('delivery', delivery.body);
 			});
 		}

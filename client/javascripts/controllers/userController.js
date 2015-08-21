@@ -40,7 +40,7 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	// ==================================================================
 	// ============ AUTOMATICALLY RUN WHEN USER PLACES ORDER ============
 	// ==================================================================
-	$scope.$on('successful_order', function() {
+	this.processOrder = function() {
 
 		$('#DeliveryQuote').modal('toggle');
 
@@ -53,7 +53,7 @@ application.controller('userController', function ($scope, $timeout, $location, 
 		userFactory.checkOut({total_amount: self.total_amount}, function() {
 
 		})
-	})
+	}
 	// ==================================================================
 	// ==================================================================
 	// ==================================================================
@@ -129,6 +129,9 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	    	data = {token: token, amount: amount};
 	    	userFactory.createCharge(data, function() {
 	    		console.log('callback here');
+	    		$scope.cartItems = null;
+	    		updateTotal();
+	    		$location.path('/successful_order');
 	    	})
 	      // Use the token to create the charge with a server-side script.
 	      // You can access the token ID with `token.id`
