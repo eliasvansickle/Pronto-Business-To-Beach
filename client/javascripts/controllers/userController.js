@@ -16,7 +16,6 @@ application.controller('userController', function ($scope, $timeout, $location, 
 		if (userFactory.currentMenuID != null) {
 			businessFactory.showItems(userFactory.currentMenuID, function (data) {
 				self.items = data.menu;
-				// console.log('data from show items function', data);
 			})
 		}
 	}
