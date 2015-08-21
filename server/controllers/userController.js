@@ -209,6 +209,7 @@ userController = {
 				}
 			}
 		}
+		req.session.cart = [];
 	},
 	charge: function(req, res) {
 		var stripeToken = req.body.token.id;
@@ -323,7 +324,6 @@ userController = {
 				console.log(delivery);
 
 			postmates.new(delivery, function(err, delivery) {
-				req.session.cart = [];
 				res.json('delivery', delivery.body);
 			});
 		}

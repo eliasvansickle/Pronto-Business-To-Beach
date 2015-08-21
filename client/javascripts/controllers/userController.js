@@ -37,9 +37,6 @@ application.controller('userController', function ($scope, $timeout, $location, 
 		templateUrl: 'updateCartItem.html'
 	}
 
-	// ==================================================================
-	// ============ AUTOMATICALLY RUN WHEN USER PLACES ORDER ============
-	// ==================================================================
 	this.processOrder = function() {
 
 		$('#DeliveryQuote').modal('toggle');
@@ -50,13 +47,7 @@ application.controller('userController', function ($scope, $timeout, $location, 
 		self.total_amount += pronto_premium;
 
 		stripeCharge();
-		userFactory.checkOut({total_amount: self.total_amount}, function() {
-
-		})
 	}
-	// ==================================================================
-	// ==================================================================
-	// ==================================================================
 
 
 	function updateTotal() {
@@ -128,13 +119,17 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	    	var amount = self.total_amount * 100;
 	    	data = {token: token, amount: amount};
 	    	userFactory.createCharge(data, function() {
-	    		console.log('callback here');
-	    		$scope.cartItems = null;
-	    		updateTotal();
-	    		$location.path('/successful_order');
+	    		console.log('finished charging the user for their order');
+	    		userFactory.checkOut({total_amount: self.total_amount}, function() {
+					console.log('order added');
+					finalize();
+				})
+				function finalize() {
+		    		$scope.cartItems = null;
+		    		updateTotal();
+		    		$location.path('/successful_order');
+				}
 	    	})
-	      // Use the token to create the charge with a server-side script.
-	      // You can access the token ID with `token.id`
 	    }
 	  });
 
