@@ -172,14 +172,19 @@ userController = {
 				order.save(function (err, order) {
 					if (err) {
 						console.log(err);
-					} else {
-						checkForMoreItems(order._id);
-						res.json("done");
+					} 
+					else {
+						checkForMoreItems(order._id, function() {
+							Order.findOne({_id: order._id}, function(err, order) {
+								res.json('ORDER', order);
+							})
+						});
 					}
 				})
 			})
 		})
-		function checkForMoreItems(order_id) {		
+		function checkForMoreItems(order_id, callback) {
+			var count = 1;
 			if(sessionCart.length > 1) {
 				for (i = 1; i < sessionCart.length; i++) {
 					item = sessionCart[i];	
@@ -193,13 +198,16 @@ userController = {
 								menuItem.orders.push(order);
 								order.ordered_items.push(menuItem);
 								menuItem.save(function (err) {
-									order.save(function (err) {
+									order.save(function (err, savedOrder) {
 										if (err) {
 											console.log(err);
 										}
 										else {
+											count ++;
 											console.log("===== ORDER ADDED =====");
-											res.json("done");
+											if(count == sessionCart.length) {
+												callback();
+											}
 										}
 									})
 								})
