@@ -44,10 +44,12 @@ application.config(function($routeProvider) {
 		templateUrl: './partials/successful_order.html'
 	})
 	.when('/business_current_orders', {
-		templateUrl: './partials/business_current_orders.html'
+		templateUrl: './partials/business_current_orders.html',
+		controller: 'businessController'
 	})
 	.when('/business_order_history', {
-		templateUrl: './partials/business_order_history.html'
+		templateUrl: './partials/business_order_history.html',
+		controller: 'businessController'
 	})
 	.when('/admin_users', {
 		templateUrl: './partials/admin_users.html',

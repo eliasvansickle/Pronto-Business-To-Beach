@@ -67,6 +67,35 @@ application.controller('businessController', function ($timeout, $location, $sco
 			$scope.successfulUpdate = data.success;
 		})
 	}
+	businessFactory.getOrderHistory(function(data) {
+		function parseDate(input) {
+			var parts = input.match(/(\d+)/g);
+		    // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
+		    return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
+		}
+		var arr = [];
+		var obj = {};
+		for(i in data.orders) {
+			for(j in data.orders[i].ordered_items) {
+				var item = data.orders[i].ordered_items[j].menu_item;
+				var price = data.orders[i].ordered_items[j].price;
+				var quantity = data.orders[i].quantity[j];
+				var total_price = price * quantity;
+				var created_at = data.orders[i].ordered_items[j].created_at;
+				created_at = parseDate(created_at).getMonth() + '/' + parseDate(created_at).getDate() + '/' + parseDate(created_at).getFullYear();
+
+				obj['item'] = item;
+				obj['price'] = price;
+				obj['quantity'] = quantity;
+				obj['total_price'] = total_price;
+				obj['created_at'] = created_at;
+				arr.push(obj);
+				obj = {};
+			}
+		}
+		$scope.orderHistory = arr;
+	})
+
 })
 
 

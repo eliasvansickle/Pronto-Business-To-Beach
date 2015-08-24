@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Business = mongoose.model('Business');
 var Menu = mongoose.model('Menu');
+var moment = require('moment');
 
 businessController = {
 	createBusiness: function(req, res) {
@@ -166,6 +167,19 @@ businessController = {
 				res.json({success: 'Successfully Updated Business'});
 			}
 
+		})
+	},
+	getOrderHistory: function(req, res) {
+		Business
+		.findOne({_id: req.session._id})
+		.populate('orders')
+		.exec(function(err, business) {
+			if(err) {
+				console.log('ERR', err);
+			}
+			else {
+				res.json('done', business);
+			}	
 		})
 	}
 }

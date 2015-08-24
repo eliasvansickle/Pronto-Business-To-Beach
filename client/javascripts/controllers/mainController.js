@@ -34,6 +34,7 @@ application.controller('mainController', function ($scope, $location, authentica
 
 	checkSession();
 
+
 	$scope.$on("checkSession", function (events, args) {
 		checkSession();
 	});

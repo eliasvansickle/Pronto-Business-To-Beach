@@ -48,8 +48,7 @@ var orderSchema = new mongoose.Schema({
 	quantity: Array,
 	_user: {type: Schema.ObjectId, ref: 'User'},
 	_business: {type: Schema.ObjectId, ref: 'Business'},
-	// _menu: {type: Schema.ObjectId, ref: 'Menu'},
-	ordered_items: [{type: Schema.Types.ObjectId, ref: 'Menu'}],
+	ordered_items: Array,
 	created_at: Number
 })
 
