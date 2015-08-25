@@ -1,4 +1,4 @@
-application.controller('userController', function ($scope, $timeout, $location, userFactory, businessFactory) {
+application.controller('userController', function ($scope, $timeout, $location, userFactory, businessFactory, $socket) {
 	var self = this;
 	this.cartCount = false;
 
@@ -119,8 +119,10 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	    	data = {token: token, amount: amount};
 	    	userFactory.createCharge(data, function() {
 	    		console.log('finished charging the user for their order');
-	    		userFactory.checkOut({total_amount: self.total_amount}, function() {
-					console.log('order added');
+	    		userFactory.checkOut({total_amount: self.total_amount}, function(order) {
+					console.log('order added', order);
+					$socket.emit('order_added', order);
+				
 					finalize();
 				})
 				function finalize() {
@@ -145,8 +147,6 @@ application.controller('userController', function ($scope, $timeout, $location, 
 	$(window).on('popstate', function() {
 		handler.close();
 	});
-
-
 
 
 ///////////////////////////////GOOGLE MAPS/////////////////////////////////////////

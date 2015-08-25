@@ -49,7 +49,7 @@ var orderSchema = new mongoose.Schema({
 	_user: {type: Schema.ObjectId, ref: 'User'},
 	_business: {type: Schema.ObjectId, ref: 'Business'},
 	ordered_items: Array,
-	created_at: Number
+	created_at: {type: Date, default: new Date}
 })
 
 var taskforceSchema = new mongoose.Schema({

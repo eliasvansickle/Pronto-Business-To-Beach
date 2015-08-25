@@ -8,6 +8,7 @@ var Postmates = require('postmates');
 var postmates = new Postmates('cus_KPvP3A7DsuwQqV', 'b27eba32-b529-433c-b852-a4b1df2e04ec');
 var app = express();
 
+
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/client'));
 
@@ -24,3 +25,15 @@ require('./server/config/routes.js')(app);
 
 
 var server = app.listen(8000);
+var io = require('socket.io')(server);
+
+SocketArray = [];
+io.sockets.on('connection', function(socket) {
+	console.log('sockets are on!');
+	socket.on('order_added', function(data) {
+		SocketArray.push(data);
+		// console.log('order_added', data);
+		io.emit('order_added_check', {currentOrders: SocketArray});
+	})
+
+})

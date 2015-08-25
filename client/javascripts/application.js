@@ -1,4 +1,4 @@
-var application = angular.module('application', ['ngRoute', 'ui.bootstrap']);
+var application = angular.module('application', ['ngRoute', 'ui.bootstrap', 'ngSocket']);
 
 
 application.config(function($routeProvider) {
@@ -45,7 +45,7 @@ application.config(function($routeProvider) {
 	})
 	.when('/business_current_orders', {
 		templateUrl: './partials/business_current_orders.html',
-		controller: 'businessController'
+		controller: 'mainController'
 	})
 	.when('/business_order_history', {
 		templateUrl: './partials/business_order_history.html',

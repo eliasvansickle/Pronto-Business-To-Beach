@@ -1,4 +1,4 @@
-application.controller('businessController', function ($timeout, $location, $scope, businessFactory) {
+application.controller('businessController', function ($timeout, $location, $scope, businessFactory, $socket) {
 
 	$scope.$emit('checkSession');
 	var currentClient;
@@ -62,17 +62,17 @@ application.controller('businessController', function ($timeout, $location, $sco
 		})
 	}
 	this.updateBusinessProfile = function(business) {
-		console.log(business);
 		businessFactory.updateCurrentBusiness(business, function(data) {
 			$scope.successfulUpdate = data.success;
 		})
 	}
-	businessFactory.getOrderHistory(function(data) {
-		function parseDate(input) {
+
+	function parseDate(input) {
 			var parts = input.match(/(\d+)/g);
 		    // new Date(year, month [, date [, hours[, minutes[, seconds[, ms]]]]])
 		    return new Date(parts[0], parts[1]-1, parts[2]); // months are 0-based
 		}
+	this.cleanUpOrder = function(data) {
 		var arr = [];
 		var obj = {};
 		for(i in data.orders) {
@@ -82,7 +82,7 @@ application.controller('businessController', function ($timeout, $location, $sco
 				var quantity = data.orders[i].quantity[j];
 				var total_price = price * quantity;
 				var created_at = data.orders[i].ordered_items[j].created_at;
-				created_at = parseDate(created_at).getMonth() + '/' + parseDate(created_at).getDate() + '/' + parseDate(created_at).getFullYear();
+				// created_at = parseDate(created_at).getMonth() + '/' + parseDate(created_at).getDate() + '/' + parseDate(created_at).getFullYear();
 
 				obj['item'] = item;
 				obj['price'] = price;
@@ -93,7 +93,11 @@ application.controller('businessController', function ($timeout, $location, $sco
 				obj = {};
 			}
 		}
-		$scope.orderHistory = arr;
+		return arr;
+	}
+	
+	businessFactory.getOrderHistory(function(data) {
+		$scope.orderHistory = self.cleanUpOrder(data);
 	})
 
 })

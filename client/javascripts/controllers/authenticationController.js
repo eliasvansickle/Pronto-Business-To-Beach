@@ -1,4 +1,4 @@
-application.controller('authenticationController', function($scope, $location, authenticationFactory) {
+application.controller('authenticationController', function($scope, $location, authenticationFactory, businessFactory) {
 	$scope.user_reg_success = authenticationFactory.user_reg_success;
 
 	$scope.createUser = function(newUser) {
@@ -41,6 +41,7 @@ application.controller('authenticationController', function($scope, $location, a
 			else if(data.type == 'business') {
 				$scope.$emit("checkSession");
 				$scope.$emit("locationChange", {location: 'business_current_orders'})
+				businessFactory.currentBusiness = data;
 				$location.path('/business_current_orders');
 			}
 			else if (data.type == "taskforce") {

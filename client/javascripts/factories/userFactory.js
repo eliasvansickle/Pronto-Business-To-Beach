@@ -32,8 +32,7 @@ application.factory('userFactory', function ($http) {
 		},
 		checkOut: function(total_amount, callback) {
 			$http.post("/user/checkOut", total_amount).success(function(order) {
-				console.log('DATA FROM CHECKOUT FUNCTION IN USER FACTORY', order);
-				callback();
+				callback(order);
 			})
 		},
 		createCharge: function(data, callback) {

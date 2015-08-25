@@ -130,7 +130,6 @@ userController = {
 		})
 	},
 	checkOut: function(req, res) {
-		var created_at_new = Number(Date.now());
 		var total_amount = req.body.total_amount;
 		var sessionCart = req.session.cart;
 
@@ -145,7 +144,6 @@ userController = {
 			order.quantity.push(item.quantity);
 			order._user = req.session._id;
 			order._business = item._business;
-			order.created_at = created_at_new;
 
 			// ========= USER ===========
 			User.findOne({_id: req.session._id}, function (err, user) {
@@ -174,11 +172,16 @@ userController = {
 						console.log(err);
 					} 
 					else {
-						checkForMoreItems(order._id, function() {
-							Order.findOne({_id: order._id}, function(err, order) {
-								res.json('ORDER', order);
-							})
-						});
+						if(sessionCart.length == 1) {
+							res.json('ORDER', order);	
+						}
+						else {
+							checkForMoreItems(order._id, function() {
+								Order.findOne({_id: order._id}, function(err, order) {
+									res.json('ORDER', order);
+								})
+							});
+						}
 					}
 				})
 			})
@@ -187,18 +190,23 @@ userController = {
 			var count = 1;
 			if(sessionCart.length > 1) {
 				for (i = 1; i < sessionCart.length; i++) {
-					item = sessionCart[i];	
+					item = sessionCart[i];
+					console.log('item 0', item);	
+
+				var x = function(item) {
+
 					Order.findOne({_id: order_id}, function (err, order) {
 						if (order) {
 							order.itemPrices.push(item.total_price);
 							order.quantity.push(item.quantity);
-
+							console.log('item 1', item);
 							// ========= MENU ===========
 							Menu.findOne({_id: item._id}, function (err, menuItem) {
+								console.log('item 2', item);
 								menuItem.orders.push(order);
 								order.ordered_items.push(menuItem);
 								menuItem.save(function (err) {
-									order.save(function (err, savedOrder) {
+									order.save(function (err) {
 										if (err) {
 											console.log(err);
 										}
@@ -214,6 +222,9 @@ userController = {
 							})
 						} 
 					})
+				}
+				x(item);
+
 				}
 			}
 		}
