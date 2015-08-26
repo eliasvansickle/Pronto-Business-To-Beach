@@ -111,6 +111,10 @@ application.controller('mainController', function ($scope, $location, authentica
 		})
 	}
 
+	$scope.deleteCurrentOrder = function(order) {
+		$socket.emit('deleteCurrentOrder', order);
+	}
+
 })
 
 

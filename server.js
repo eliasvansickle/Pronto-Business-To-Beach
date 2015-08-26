@@ -7,6 +7,7 @@ var stripe = require("stripe")("sk_test_uhaOwUSTk0V3lzJF0IvkcBOJ");
 var Postmates = require('postmates');
 var postmates = new Postmates('cus_KPvP3A7DsuwQqV', 'b27eba32-b529-433c-b852-a4b1df2e04ec');
 var app = express();
+var _ = require("underscore");
 
 
 app.use(bodyParser.json());
@@ -32,8 +33,21 @@ io.sockets.on('connection', function(socket) {
 	console.log('sockets are on!');
 	socket.on('order_added', function(data) {
 		SocketArray.push(data);
-		// console.log('order_added', data);
 		io.emit('order_added_check', {currentOrders: SocketArray});
 	})
-
+	socket.on('deleteCurrentOrder', function(data) {
+		for(var i = 0; i < SocketArray.length; i++) {
+			for(var j = 0; j < SocketArray[i].ordered_items.length; j ++) {
+				if(SocketArray[i].ordered_items[j].created_at == data.created_at) {
+					console.log('they are equal!');
+					SocketArray[i].ordered_items.splice(j,1);
+					io.emit('order_added_check', {currentOrders: SocketArray});
+					break;
+				}
+				else {
+					console.log('no match!');
+				}
+			}
+		}
+	})
 })

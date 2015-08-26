@@ -36,6 +36,6 @@ application.factory('businessFactory', function ($http) {
 			$http.get('/business/getOrderHistory').success(function(data) {
 				callback(data);
 			})
-		} 
+		}
 	}
 })
