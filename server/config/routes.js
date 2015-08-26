@@ -3,6 +3,7 @@ module.exports = function(app) {
 	var taskforceController = require('../controllers/taskforceController.js');
 	var userController = require('../controllers/userController.js');
 	var sessionController = require('../controllers/sessionController.js');
+	var adminController = require('../controllers/adminController.js');
 
 	app.post('/user/create', function(req, res) {
 		userController.createUser(req, res);
@@ -102,6 +103,9 @@ module.exports = function(app) {
 	})
 	app.get('/business/getOrderHistory', function(req, res) {
 		businessController.getOrderHistory(req, res);
+	})
+	app.post('/admin/sendEmail', function(req, res) {
+		adminController.sendEmail(req, res);
 	})
 }
 

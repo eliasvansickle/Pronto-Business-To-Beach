@@ -1,4 +1,4 @@
-application.controller('authenticationController', function($scope, $location, authenticationFactory, businessFactory) {
+application.controller('authenticationController', function($scope, $location, authenticationFactory, businessFactory, adminFactory) {
 	$scope.user_reg_success = authenticationFactory.user_reg_success;
 
 	$scope.createUser = function(newUser) {
@@ -32,6 +32,7 @@ application.controller('authenticationController', function($scope, $location, a
 			if(data.type == 'admin') {
 				$scope.$emit("checkSession");
 				$scope.$emit('locationChange', {location: 'admin_users'});
+				adminFactory.currentAdmin = data;
 				$location.path('/admin_users');
 			}
 			else if(data.type == 'user') {

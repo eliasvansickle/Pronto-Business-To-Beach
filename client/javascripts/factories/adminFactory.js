@@ -4,6 +4,7 @@ application.factory('adminFactory', function($http) {
 	factory.user_to_be_updated = {};
 	factory.business_to_be_updated = {};
 	factory.taskforce_to_be_updated = {};
+	factory.currentAdmin = {};
 
 	factory.showUsers = function(callback) {
 		$http.get('/users').success(function(data) {
@@ -66,6 +67,12 @@ application.factory('adminFactory', function($http) {
 	factory.deleteTaskforce = function(taskforce_id, callback) {
 		$http.post('/taskforce/delete/'+taskforce_id).success(function() {
 			callback();
+		})
+	}
+	factory.sendEmail = function(data, callback) {
+		console.log(data);
+		$http.post('/admin/sendEmail', data).success(function(data) {
+			callback(data);
 		})
 	}
 

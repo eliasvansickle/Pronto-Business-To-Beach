@@ -20,7 +20,7 @@
 			<tbody>
 				<tr ng-repeat='user in users | filter: filter_name | orderBy: "-created_at"'>
 					<td ng-bind='user.name'></td>
-					<td><a href ng-bind='user.email'></a></td>
+					<td><a href id='emailUserLink' ng-bind='user.email' data-email="{{ user.email }}" data-toggle='modal' data-target='#sendEmailToUser'></a></td>
 					<td ng-bind='user.cell_phone'></td>
 					<td ng-bind='user.type'></td>
 					<td ng-bind='user.created_at'></td>
@@ -30,3 +30,59 @@
 		</table>
 	</div>
 </div>
+
+<div class="modal fade" id='sendEmailToUser' tabindex='-1' role='dialog'>
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Email User</h4>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label class="control-label" for="user_email">To: </label>
+						<input id='email_address' class='form-control' type="text" name="email_address" value=''><br>
+
+						<label for="email_subject" class='control-label'>Subject</label>
+						<input type="text" class='form-control' name='email_subject' id='email_subject'><br>
+						
+						<label for="email_content" class="control-label">Message</label>
+						<textarea name='email_content' id='email_content' class='form-control'></textarea><br>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" ng-click='sendEmail()'>Send</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id='successfullySentEmail' tabindex='-1' role='dialog'>
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Success!</h4>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

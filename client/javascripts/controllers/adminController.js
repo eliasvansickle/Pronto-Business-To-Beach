@@ -1,4 +1,5 @@
 application.controller('adminUsersController', function($scope, $location, adminFactory) {
+	$scope.currentAdmin = adminFactory.currentAdmin;
 	adminFactory.showUsers(function(data) {
 		$scope.users = data;
 	})
@@ -16,6 +17,24 @@ application.controller('adminUsersController', function($scope, $location, admin
 			})
 		})
 	}
+
+	$(document).on('click', '#emailUserLink', function() {
+		var email_address = $(this).data('email');
+		$('.modal-body #email_address').val(email_address);
+	})
+
+	$scope.sendEmail = function(from) {
+		var to = $('#email_address').val();
+		var subject = $('#email_subject').val();
+		var content = $('#email_content').val();
+		var data = {to: to, subject: subject, content: content};
+		adminFactory.sendEmail(data, function(data) {
+			console.log('callback here',data);
+			$('#sendEmailToUser').modal('toggle');
+			$('#successfullySentEmail').modal('toggle');
+		})
+	}
+
 })
 
 
