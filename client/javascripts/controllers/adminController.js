@@ -23,7 +23,7 @@ application.controller('adminUsersController', function($scope, $location, admin
 		$('.modal-body #email_address').val(email_address);
 	})
 
-	$scope.sendEmail = function(from) {
+	$scope.sendEmail = function() {
 		var to = $('#email_address').val();
 		var subject = $('#email_subject').val();
 		var content = $('#email_content').val();
@@ -65,6 +65,23 @@ application.controller('adminBusinessController', function($scope, $location, ad
 			adminFactory.showBusinesses(function(data) {
 				$scope.businesses = data;
 			})
+		})
+	}
+
+	$(document).on('click', '#emailBusinessLink', function() {
+		var email_address = $(this).data('email');
+		$('.modal-body #email_address').val(email_address);
+	})
+
+	$scope.sendEmail = function() {
+		var to = $('#email_address').val();
+		var subject = $('#email_subject').val();
+		var content = $('#email_content').val();
+		var data = {to: to, subject: subject, content: content};
+		adminFactory.sendEmail(data, function(data) {
+			console.log('callback here',data);
+			$('#sendEmailToBiz').modal('toggle');
+			$('#successfullySentEmail').modal('toggle');
 		})
 	}
 })
