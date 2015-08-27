@@ -26,10 +26,20 @@ application.controller('authenticationController', function($scope, $location, a
 
 		})
 		$scope.newTaskforce = {};
-	} 
+	}
+
+	function isEmpty(obj) {
+	    for(var prop in obj) {
+	        if(obj.hasOwnProperty(prop))
+	            return false;
+	    }
+
+	    return true;
+	}
+
 	$scope.login = function(client) {
 		authenticationFactory.login(client, function(data) {
-			if(client != undefined) {
+			if(client != undefined && !isEmpty(client)) {
 				if(data.type == 'admin') {
 					$scope.$emit("checkSession");
 					$scope.$emit('locationChange', {location: 'admin_users'});
