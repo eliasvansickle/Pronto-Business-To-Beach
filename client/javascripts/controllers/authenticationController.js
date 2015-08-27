@@ -29,25 +29,27 @@ application.controller('authenticationController', function($scope, $location, a
 	} 
 	$scope.login = function(client) {
 		authenticationFactory.login(client, function(data) {
-			if(data.type == 'admin') {
-				$scope.$emit("checkSession");
-				$scope.$emit('locationChange', {location: 'admin_users'});
-				adminFactory.currentAdmin = data;
-				$location.path('/admin_users');
-			}
-			else if(data.type == 'user') {
-				$scope.$emit("checkSession");
-				$location.path('/user_dashboard');
-			}
-			else if(data.type == 'business') {
-				$scope.$emit("checkSession");
-				$scope.$emit("locationChange", {location: 'business_current_orders'})
-				businessFactory.currentBusiness = data;
-				$location.path('/business_current_orders');
-			}
-			else if (data.type == "taskforce") {
-				$scope.$emit("checkSession");
-				$location.path('/taskforce_receive_orders');
+			if(client != undefined) {
+				if(data.type == 'admin') {
+					$scope.$emit("checkSession");
+					$scope.$emit('locationChange', {location: 'admin_users'});
+					adminFactory.currentAdmin = data;
+					$location.path('/admin_users');
+				}
+				else if(data.type == 'user') {
+					$scope.$emit("checkSession");
+					$location.path('/user_dashboard');
+				}
+				else if(data.type == 'business') {
+					$scope.$emit("checkSession");
+					$scope.$emit("locationChange", {location: 'business_current_orders'})
+					businessFactory.currentBusiness = data;
+					$location.path('/business_current_orders');
+				}
+				else if (data.type == "taskforce") {
+					$scope.$emit("checkSession");
+					$location.path('/taskforce_receive_orders');
+				}
 			}
 			$scope.login_fail = data.login_fail;
 		})
